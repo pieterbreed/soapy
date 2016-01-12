@@ -1,0 +1,7 @@
+---
+baseurl: "http://soapy.pb.co.za/"
+languageCode: "en-us"
+title: "Soapy"
+editor: "emacs -nw"
+metaDataFormat: "yaml"
+---
