@@ -13,7 +13,7 @@ My aim in this is to secure my future supply of good body soap. In order to do t
  - Help my mother make as much soap as gives her pleasure, so she can make it well
  - Balance the demand for good soap with the supply of good soap, so that no precious resource is wasted
  
-In short: Soap goes left, money goes right, such that left and right stays in balance.
+In economic terms: Soap goes left, money goes right, such that left and right stays in balance.
 
 Software use cases
 ------------------
