@@ -1,13 +1,13 @@
-name: "pb.co.za-hugo-theme"
+name: "soapy.pb.co.za-hugo-theme"
 license: "Creative Commons (by-sa) v4.0"
 licenselink: "https://github.com/pieterbreed/pb.co.za-hugo-theme/blob/master/LICENSE.md"
-description: "A mobile first hugo theme created from scratch for http://pb.co.za"
-homepage: "http://pb.co.za/"
-tags: [""]
+description: "A hugo theme suitable for the soapy product site"
+homepage: "http://soapy.pb.co.za/"
+tags: ["tags", "categories"]
 features:  [""]
 min_version: 0.14
 
-[author]
-  name = ""
-  homepage = ""
+author:
+  name: "Pieter Breed"
+  homepage: "http://www.pb.co.za/"
 
