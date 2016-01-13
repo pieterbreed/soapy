@@ -4,5 +4,11 @@ languageCode: "en-us"
 title: "Soapy"
 editor: "emacs -nw"
 metaDataFormat: "yaml"
-theme: "soapy-bootswatch"
+theme: "soapy.pb.co.za-hugo-theme"
+publishdir: "public"
+indexes:
+  category: "categories"
+  tag: "tags"
+author:
+  name: "Pieter Breed"
 ---
