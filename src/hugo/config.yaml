@@ -4,4 +4,5 @@ languageCode: "en-us"
 title: "Soapy"
 editor: "emacs -nw"
 metaDataFormat: "yaml"
+theme: "soapy-bootswatch"
 ---
