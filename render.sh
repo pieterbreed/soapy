@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function log {
+    echo -e "########################################\n$1" > /dev/stderr
+}
+
 ########################################
 
 TOP="`dirname \"$BASH_SOURCE\"`"              # relative
@@ -11,7 +15,7 @@ then
   exit 1  # fail
 fi
   
-echo "Found TOP at: $TOP" > /dev/stderr
+log "Found TOP at: $TOP"
 
 ########################################
 
