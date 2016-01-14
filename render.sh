@@ -8,6 +8,15 @@ function log {
 
 ########################################
 
+# environment loaded at all? ||
+if ! test ".$SOAPY_CONFIG_HAS_BEEN_LOADED" = ".1";
+then
+    log "Load the environment first"
+    exit 1
+fi
+
+########################################
+
 TOP="`dirname \"$BASH_SOURCE\"`"              # relative
 TOP="`( cd \"$TOP\" && pwd )`"  # absolutized and normalized
 if [ -z "$TOP" ]
