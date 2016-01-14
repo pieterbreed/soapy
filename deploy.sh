@@ -29,27 +29,7 @@ fi
 log "Found TOP at: $TOP"
 
 ########################################
-# render hugo site
 
-TO_CLEAN="$TOP/output/hugo"
-log "Cleaning up $TO_CLEAN"
-rm -rf "$TO_CLEAN"
-
-log "Generating hugo site"
-
-mkdir -p "$TOP/output"
-pushd "$TOP/src/hugo"
-hugo --baseURL="$WEBSERVER_PUBLIC_SCHEME://$WEBSERVER_PUBLIC_DNSNAME:$WEBSERVER_PUBLIC_PORT" --verbose --buildDrafts 
+pushd "$TOP/src/ansible"
+ansible-playbook -i ./inventory.sh deploy_web.yml
 popd
-
-log "Generated output"
-
-find "$TOP/output" -type f | xargs ls -l
-
-########################################
-# render ansible inventory file
-
-
-
-
-

@@ -1,0 +1,9 @@
+server {
+  listen {{ port }};
+  server_name {{ vhost }};
+
+  location / {
+    root   {{ static_html }};
+    index  index.html;
+  }
+} 

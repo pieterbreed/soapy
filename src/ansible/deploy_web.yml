@@ -1,0 +1,18 @@
+---
+- hosts: webservers
+  vars:
+    vhost: "{{ lookup('env', 'WEBSERVER_PUBLIC_DNSNAME') }}"
+    port:  "{{ lookup('env', 'WEBSERVER_PUBLIC_PORT') }}"
+  tasks:
+    - name: Update the nginx config file
+      template:
+        src: "nginx.conf.j2"
+        dest: "{{ nginx_config_dest }}"
+      notify:
+        - reload nginx
+    - name: Copy the static content accross
+      debug: msg="at a later stage, let this actually copy something somewhere"
+      when: false
+  handlers:
+    - name: reload nginx
+      shell: nginx -s reload
