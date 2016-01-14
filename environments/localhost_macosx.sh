@@ -11,6 +11,9 @@ export WEBSERVER_PUBLIC_PORT="8080"
 
 export WEB_STATIC_CONTENT="`(cd \"$WHEREAMI/../output/hugo\" && pwd)`"
 
+export PGSQL_USERNAME="`whoami`"
+export PGSQL_DB_NAME="soapy"
+
 read -d '' ANSIBLE_INVENTORY <<EOF
 {
   "webservers": {

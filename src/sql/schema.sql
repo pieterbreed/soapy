@@ -2,6 +2,7 @@ CREATE EXTENSION pgcrypto;
 CREATE TABLE batches (
        announced date NOT NULL,      -- date the batch was loaded/made/created
        seq int NOT NULL,             -- if more than one batch was made in a day, they can be numbered sequentially
+       closed boolean NOT NULL DEFAULT false,
        name text,
        sell_from date,
        average_price real,
