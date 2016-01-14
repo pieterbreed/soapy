@@ -15,11 +15,14 @@ echo "Found TOP at: $TOP" > /dev/stderr
 
 ########################################
 
-mkdir -p "$TOP/output/static"
+rm -rf "$TOP/output/hugo"
+mkdir -p "$TOP/output"
 
 pushd "$TOP/src/hugo"
-rm -rf public/* && hugo --verbose --buildDrafts && find public -type f -name "*.html" | xargs ls -l
+hugo --verbose --buildDrafts
 popd
+
+find "$TOP/output" -type f -name "*.html" | xargs ls -l
 
 
 
