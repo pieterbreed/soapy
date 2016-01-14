@@ -2,6 +2,11 @@
 
 Wherein I keep note of the things I think I'll be working on. I might even remember to update this from time to time.
 
-## Render an nginx config file for the site
+## populate the batches out of the database during rendering
 
-Use the environments mechanism to render a web-server/machine specific nginx config file so that the site can run properly on any machine.
+## add a blog to the site
+
+## render the blog posts and batches differently
+
+## add support for product photos
+
