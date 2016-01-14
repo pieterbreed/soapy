@@ -1,7 +1,9 @@
 #!/bin/bash
 
+########################################
+
 function log {
-    echo -e "########################################\n$1" > /dev/stderr
+    echo -e "########################################\n# $1\n########################################\n" > /dev/stderr
 }
 
 ########################################
@@ -19,14 +21,20 @@ log "Found TOP at: $TOP"
 
 ########################################
 
-rm -rf "$TOP/output/hugo"
-mkdir -p "$TOP/output"
+TO_CLEAN="$TOP/output/hugo"
+log "Cleaning up $TO_CLEAN"
+rm -rf "$TO_CLEAN"
 
+log "Generating hugo site"
+
+mkdir -p "$TOP/output"
 pushd "$TOP/src/hugo"
 hugo --verbose --buildDrafts
 popd
 
-find "$TOP/output" -type f -name "*.html" | xargs ls -l
+log "Generated output"
+
+find "$TOP/output" -type f | xargs ls -l
 
 
 
