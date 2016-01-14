@@ -15,6 +15,8 @@ echo "Found TOP at: $TOP" > /dev/stderr
 
 ########################################
 
+mkdir -p "$TOP/output/static"
+
 pushd "$TOP/src/hugo"
 rm -rf public/* && hugo --verbose --buildDrafts && find public -type f -name "*.html" | xargs ls -l
 popd

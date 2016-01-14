@@ -5,7 +5,7 @@ title: "Soapy"
 editor: "emacs -nw"
 metaDataFormat: "yaml"
 theme: "soapy.pb.co.za-hugo-theme"
-publishdir: "public"
+publishdir: "../../static"
 indexes:
   category: "categories"
   tag: "tags"
