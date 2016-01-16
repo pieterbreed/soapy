@@ -64,4 +64,4 @@
     (list (format "~a-~a.md" announced sequence)
           tpl)))
 
-
+(save-renders (render-active-batches))
