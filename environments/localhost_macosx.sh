@@ -10,6 +10,7 @@ export WEBSERVER_PUBLIC_DNSNAME="`hostname`"
 export WEBSERVER_PUBLIC_PORT="8080"
 
 export WEB_STATIC_CONTENT="`(cd \"$WHEREAMI/../output/hugo\" && pwd)`"
+export WEB_HUGO_SRC_FOLDER="`(cd \"$WHEREAMI/../src/hugo\" && pwd)`"
 
 export PGSQL_USERNAME="`whoami`"
 export PGSQL_DB_NAME="soapy"
