@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 ########################################
 
 function log {
@@ -27,6 +29,14 @@ then
 fi
   
 log "Found TOP at: $TOP"
+
+########################################
+# render (build) the render-batch-files executable
+raco exe -o "$TOP/output/bin/render-batch-files" "$TOP/src/rkt/render-batch-files.rkt"
+
+########################################
+# render the batches markdown files
+render-batch-files
 
 ########################################
 # render hugo site

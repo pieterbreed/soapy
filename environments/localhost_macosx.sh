@@ -36,5 +36,5 @@ EOF
 
 export ANSIBLE_INVENTORY
 
-export PATH="`(cd $WHEREAMI/../output/bin && pwd)`:$PATH"
+export PATH="`(cd $WHEREAMI/../output/bin && pwd)`:/Applications/Racket v6.2.1/bin:$PATH"
 export PLTSTDERR="debug"
