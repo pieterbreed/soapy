@@ -35,3 +35,6 @@ read -d '' ANSIBLE_INVENTORY <<EOF
 EOF
 
 export ANSIBLE_INVENTORY
+
+export PATH="`(cd $WHEREAMI/../output/bin && pwd)`:$PATH"
+export PLTSTDERR="debug"

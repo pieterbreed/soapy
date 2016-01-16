@@ -9,14 +9,14 @@
                     (getenv "PGSQL_USERNAME")))
 (define hugo-batches-path (let ([v (getenv "WEB_HUGO_SRC_FOLDER")])
                             (if v
-                                (build-path "content" "batches")
+                                (build-path v "content" "batches")
                                 (build-path 'same))))
 
 (log-debug
- "Using:\nDB: '~s'\nDB_USERNAME: '~s'\nHUGO_BATCHES_PATH: '~s'"
+ "Using:\nDB: ~s\nDB_USERNAME: ~s\nHUGO_BATCHES_PATH: ~s"
  db-name
  db-user
- hugo-batches-path)
+ (path->string hugo-batches-path))
 
 (define db-conn
   (virtual-connection
