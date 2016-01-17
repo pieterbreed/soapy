@@ -26,8 +26,8 @@
 (define (render-active-batches db-conn)
   (map render-batch (get-active-batches-view-data db-conn)))
 
-(define (save-render hugo-batches-path render)
-  (let* ([filepath (build-path hugo-batches-path
+(define (save-render hugo-src-path render)
+  (let* ([filepath (build-path hugo-src-path
                                (first render))]
          [text (second render)]
          [file (open-output-file
