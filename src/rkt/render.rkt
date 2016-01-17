@@ -45,6 +45,6 @@
                                 ingredients
                                 elzas_remarks)
   (let ([tpl (include-template "batch_template.md")])
-    (list (format "~a-~a.md" announced sequence)
+    (list (format "content/batches/~a-~a.md" announced sequence)
           tpl)))
 

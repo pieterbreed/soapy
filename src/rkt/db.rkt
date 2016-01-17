@@ -1,12 +1,17 @@
 #lang racket
 
+(define-logger db)
+
 (require db)
 
 (provide get-active-batches-view-data)
 (provide create-db-conn)
 
-(define (create-db-conn db-name
-                        db-user)
+(define (create-db-conn db-user
+                        db-name)
+  (log-db-error "Connecting to PSQL: ~a@~a"
+                db-user
+                db-name)
   (virtual-connection
    (connection-pool
     (lambda () (postgresql-connect #:user db-user
