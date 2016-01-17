@@ -1,5 +1,7 @@
 #lang racket
 
+(define-logger jarvis-render)
+
 (require "db.rkt")
 (require web-server/templates)
 
@@ -25,14 +27,16 @@
   (map render-batch (get-active-batches-view-data db-conn)))
 
 (define (save-render hugo-batches-path render)
-  (let* ([filename (first render)]
+  (let* ([filepath (build-path hugo-batches-path
+                               (first render))]
          [text (second render)]
          [file (open-output-file
-                (build-path hugo-batches-path filename)
+                filepath
                 #:mode 'text
                 #:exists 'truncate/replace)])
     (display text file)
-    (close-output-port file)))
+    (close-output-port file)
+    (log-jarvis-render-info (path->string filepath))))
 
 (define (render-batch r)
   (apply create-hugo-batch-file (vector->list r)))

@@ -1,6 +1,6 @@
 #lang racket
 
-(define-logger db)
+(define-logger jarvis-db)
 
 (require db)
 
@@ -9,7 +9,7 @@
 
 (define (create-db-conn db-user
                         db-name)
-  (log-db-error "Connecting to PSQL: ~a@~a"
+  (log-jarvis-db-debug "Connecting to PSQL: ~a@~a"
                 db-user
                 db-name)
   (virtual-connection
