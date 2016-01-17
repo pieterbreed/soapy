@@ -42,7 +42,12 @@
                                (conf-ref 'PGSQL_USERNAME)
                                (conf-ref 'PGSQL_DB))])
                  (render-batch-files db-conn
-                                     (conf-ref 'HUGO_SRC)))))))
+                                     (conf-ref 'HUGO_SRC))
+                 (render-hugo-files (conf-ref 'HUGO_SRC)
+                                    (format "~a://~a:~a"
+                                            (conf-ref 'WEBSERVER_PUBLIC_SCHEME)
+                                            (conf-ref 'WEBSERVER_PUBLIC_DNSNAME)
+                                            (conf-ref 'WEBSERVER_PUBLIC_PORT))))))))
 
 (define command
   (command-line

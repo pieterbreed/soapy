@@ -5,6 +5,8 @@
 (require "db.rkt")
 (require web-server/templates)
 
+;; API
+
 (provide render-batch-files)
 (provide render-hugo-files)
 
@@ -14,8 +16,15 @@
    hugo-batches-path
    (render-active-batches db-conn)))
 
-(define render-hugo-files
-  null)
+(define (render-hugo-files hugo-path base-url)
+  (parameterize
+   ([current-directory hugo-path])
+   (system*
+    (find-executable-path "hugo")
+    (format "--baseURL=~s" base-url)
+    "--verbose"
+    "--buildDrafts"
+    #:set-pwd? true)))
 
 ;; INTERNALS
 
