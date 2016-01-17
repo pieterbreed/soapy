@@ -34,20 +34,23 @@
 (define commands
   (hash
    "noop"   (list "Does nothing"
-             (lambda ()
-               (log-info "noop was called :)")))
+                  (lambda () (log-info "noop was called :)")))
    "render" (list "Prepares and renders the static HTML (hugo)"
-             (lambda ()
-               (let ([db-conn (create-db-conn
-                               (conf-ref 'PGSQL_USERNAME)
-                               (conf-ref 'PGSQL_DB))])
-                 (render-batch-files db-conn
-                                     (conf-ref 'HUGO_SRC))
-                 (render-hugo-files (conf-ref 'HUGO_SRC)
-                                    (format "~a://~a:~a"
-                                            (conf-ref 'WEBSERVER_PUBLIC_SCHEME)
-                                            (conf-ref 'WEBSERVER_PUBLIC_DNSNAME)
-                                            (conf-ref 'WEBSERVER_PUBLIC_PORT))))))))
+                  render-proc)
+   "deploy" (list "Deploys the app stack"
+                  (lambda () null))))
+
+(define (render-proc)
+  (let ([db-conn (create-db-conn
+                  (conf-ref 'PGSQL_USERNAME)
+                  (conf-ref 'PGSQL_DB))])
+    (render-batch-files db-conn
+                        (conf-ref 'HUGO_SRC))
+    (render-hugo-files (conf-ref 'HUGO_SRC)
+                       (format "~a://~a:~a"
+                               (conf-ref 'WEBSERVER_PUBLIC_SCHEME)
+                               (conf-ref 'WEBSERVER_PUBLIC_DNSNAME)
+                               (conf-ref 'WEBSERVER_PUBLIC_PORT)))))
 
 (define command
   (command-line
