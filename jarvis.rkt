@@ -31,6 +31,7 @@
      'HUGO_SRC (rel-path "src" "hugo")
      'ANSIBLE_SRC (rel-path "src" "ansible")
      'EXTRA_BINS (rel-path "bin")
+     'RACKET_SRC (rel-path "src" "rkt")
      'PGSQL_USERNAME (getenv "USER")
      'PGSQL_DB "soapy"
      'JARVIS_RPC_PORT 4010)))
@@ -116,10 +117,10 @@
     (parameterize
      ([current-directory ansible-path])
      (system*
-      (find-executable-path "ansible_dynamic_inventory.rkt") "--list"))))
-      ;; (find-executable-path "ansible-playbook")
-      ;; "-i" "ansible_dynamic_inventory.rkt"
-      ;; "deploy_web.yml"))))
+      (find-executable-path "ansible-playbook")
+      "-i" (path->string (build-path (conf-ref 'RACKET_SRC)
+                                     "ansible_dynamic_inventory.rkt"))
+      "deploy_web.yml"))))
 
 (define commands
   (hash

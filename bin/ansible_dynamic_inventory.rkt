@@ -1,1 +1,0 @@
-../src/rkt/ansible_dynamic_inventory.rkt
