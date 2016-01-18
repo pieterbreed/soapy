@@ -2,10 +2,6 @@
 
 Wherein I keep note of the things I think I'll be working on. I might even remember to update this from time to time.
 
-## enable the jarvis system to deploy to localhost with ansible
-
- - allow ansible to read the inventory dynamically from jarvis
-
 ## create the batches that will be sold
 
  - get the names in the book
