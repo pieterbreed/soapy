@@ -18,22 +18,27 @@
 
 ;; ENVIRONMENT CONFIGURATION
 
+
+
 (define CONFIG_DATA
-  (hash
-   'WEBSERVER_PUBLIC_SCHEME "http"
-   'WEBSERVER_PUBLIC_DNSNAME (gethostname)
-   'WEBSERVER_PUBLIC_PORT "8080"
-   'STATIC_HTML_OUTPUT (build-path 'same "output" "hugo")
-   'HUGO_SRC (path->complete-path (build-path 'same "src" "hugo"))
-   'ANSIBLE_SRC (path->complete-path (build-path 'same "src" "ansible"))
-   'EXTRA_BINS (path->complete-path (build-path 'same "bin"))
-   'PGSQL_USERNAME (getenv "USER")
-   'PGSQL_DB "soapy"
-   'JARVIS_RPC_PORT 4010))
+  (let ([rel-path (lambda ps (path->complete-path
+                              (apply build-path 'same ps)))])
+    (hash
+     'WEBSERVER_PUBLIC_SCHEME "http"
+     'WEBSERVER_PUBLIC_DNSNAME (gethostname)
+     'WEBSERVER_PUBLIC_PORT "8080"
+     'STATIC_HTML_OUTPUT (rel-path "output" "hugo")
+     'HUGO_SRC (rel-path "src" "hugo")
+     'ANSIBLE_SRC (rel-path "src" "ansible")
+     'EXTRA_BINS (rel-path "bin")
+     'PGSQL_USERNAME (getenv "USER")
+     'PGSQL_DB "soapy"
+     'JARVIS_RPC_PORT 4010)))
 
 (define (conf-ref s)
   (dict-ref CONFIG_DATA s))
 
+;; EXTRA ENVIRONMENT VARIABLES FOR SUB-PROCESSES
 
 (void (putenv "PATH" (format "~a:~a"
                        (conf-ref 'EXTRA_BINS)
@@ -42,8 +47,27 @@
 
 ;; RPC operation
 
+(define (inventory-list)
+  (hash 'webservers (hash 'hosts (list "localhost")
+                          'vars (hash 'ansible_connection
+                                      "local"))
+        '_meta (hash 'hostvars
+                     (hash 'localhost
+                           (hash 'nginx_config_dest (format "/usr/local/etc/nginx/servers/~a.conf"
+                                                            (conf-ref 'WEBSERVER_PUBLIC_DNSNAME))
+                                 'static_html (path->string (conf-ref 'STATIC_HTML_OUTPUT)))))))
+
+(define (inventory-host-vars host)
+  (log-jarvis-error "The inventory-host-vars RPC mechanism has not been implemented yet :(")
+  (json-null))
+
 (define (rpc-invoke args)
-  args)
+  (match args
+         [(list "ansible-inventory" op args ...)
+          (match op
+                 ["list" (inventory-list)]
+                 ["host" (inventory-host-vars (first args))])]
+         [_ (list "Unknown operation")]))
 
 (define RPCC (make-channel))
 
