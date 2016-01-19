@@ -100,12 +100,16 @@
 
 ;; CLI INTERFACE
 
-(define (render-proc)
+(define (create-db-conn)
   (let ([db-conn (create-db-conn
                   (conf-ref 'PGSQL_USERNAME)
                   (conf-ref 'PGSQL_DB))])
-    (render-batch-files db-conn
-                        (conf-ref 'HUGO_SRC))
+    db-conn))
+
+(define (render-proc)
+  (let ([db-conn (create-db-conn)])
+    ;; (render-batch-files db-conn
+    ;;                     (conf-ref 'HUGO_SRC))
     (render-hugo-files (conf-ref 'HUGO_SRC)
                        (format "~a://~a:~a"
                                (conf-ref 'WEBSERVER_PUBLIC_SCHEME)
@@ -122,6 +126,11 @@
                                      "ansible_dynamic_inventory.rkt"))
       "deploy_web.yml"))))
 
+(define (sync-batches)
+  (let ([db-conn (create-db-conn)]
+        [batch-data (read-batch-data (conf-ref 'HUGO_SRC))])
+    (update-batches db-conn batch-data)))
+
 (define commands
   (hash
    "noop"    (list "Does nothing"
@@ -130,6 +139,8 @@
                    (lambda _ (render-proc)))
    "deploy"  (list "Deploys the app stack"
                    (lambda _ (deploy-proc)))
+   "sync-batch" (list "Syncs the database batches from the hugo src tree"
+                      (lambda _ (sync-batches)))
    ;; "ansible" (list "Runs ansible-playbook with a dynamic inventory against the provided playbook."
    ;;                 (lambda args (ansible-proc args)))
    ))
