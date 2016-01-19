@@ -29,3 +29,25 @@
                FROM batches
                WHERE closed = $1"
               false))
+
+(define (convert-str-to-sql-date s)
+  null)
+
+(define (load-active-batch db-conn
+                           announced-text
+                           name
+                           sell-from-text
+                           average-price
+                           ingredients
+                           remarks)
+  (query-exec "INSERT INTO batches (announced, seq, closed, name, sell_from, average_price, ingredients, elzas_remarks)
+                           VALUES  ($1,        $2,  $3,     $4,   $5,        $6,            $7,          $8)"
+              (convert-str-to-sql-date announced-text)
+              1
+              #f
+              name
+              (convert-str-to-sql-date sell-from-text)
+              average-price
+              ingredients
+              remarks))
+               

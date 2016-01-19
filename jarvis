@@ -14,7 +14,8 @@
 (require racket/format)
 (require mzlib/os)
 (require "src/rkt/render.rkt"
-         "src/rkt/db.rkt")
+         "src/rkt/db.rkt"
+         "src/rkt/load-batch.rkt")
 
 ;; ENVIRONMENT CONFIGURATION
 
@@ -68,7 +69,7 @@
           (match op
                  ["list" (inventory-list)]
                  ["host" (inventory-host-vars (first args))])]
-         [_ (list "Unknown operation")]))
+         [_ (list "Unknown RPC Operation :(")]))
 
 (define RPCC (make-channel))
 
@@ -123,22 +124,24 @@
                                      "ansible_dynamic_inventory.rkt"))
       "deploy_web.yml"))))
 
+(define (load-batch path)
+  (log-jarvis-debug "got this info: ~s" (load-batch-from-path path)))
+
 (define commands
   (hash
-   "noop"    (list "Does nothing"
-                   (lambda _ (log-jarvis-info "noop was called :)")
-                           true))
-   "render"  (list "Prepares and renders the static HTML (hugo)"
-                   (lambda _ (render-proc)))
-   "deploy"  (list "Deploys the app stack"
-                   (lambda _ (deploy-proc)))
-   ;; "ansible" (list "Runs ansible-playbook with a dynamic inventory against the provided playbook."
-   ;;                 (lambda args (ansible-proc args)))
+   "noop"       (list "Does nothing"
+                      (lambda _ (log-jarvis-info "noop was called :)")
+                              true))
+   "render"     (list "Prepares and renders the static HTML (hugo)"
+                      (lambda _ (render-proc)))
+   "deploy"     (list "Deploys the app stack"
+                      (lambda _ (deploy-proc)))
+   "load-batch" (list "Loads batch info into the db from a path"
+                      (lambda args (apply load-batch args)))
    ))
 
 (define command-params
   (command-line
-   #:usage-help "noop | render"
    #:args op op))
 
 (log-jarvis-info "Received CLI params: ~a" command-params)

@@ -4,6 +4,7 @@ Wherein I keep note of the things I think I'll be working on. I might even remem
 
 ## create the batches that will be sold
 
+ - figure out how to load the things from a folder
  - get the names in the book
 
 ## reorganize the partial hugo templates a little bit
