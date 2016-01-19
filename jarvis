@@ -130,7 +130,9 @@
 (define (sync-batches)
   (let ([db-conn (create-conn)]
         [batch-data (read-batch-data (conf-ref 'HUGO_SRC))])
-    (update-batches db-conn batch-data)))
+    (log-jarvis-debug "Found the markdown files to sync with ~s" batch-data)
+    null))
+
 
 (define commands
   (hash
@@ -140,7 +142,7 @@
                    (lambda _ (render-proc)))
    "deploy"  (list "Deploys the app stack"
                    (lambda _ (deploy-proc)))
-   "sync-batch" (list "Syncs the database batches from the hugo src tree"
+   "sync-batches" (list "Syncs the database batches from the hugo src tree"
                       (lambda _ (sync-batches)))
    ;; "ansible" (list "Runs ansible-playbook with a dynamic inventory against the provided playbook."
    ;;                 (lambda args (ansible-proc args)))
