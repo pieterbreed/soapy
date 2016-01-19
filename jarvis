@@ -14,7 +14,8 @@
 (require racket/format)
 (require mzlib/os)
 (require "src/rkt/render.rkt"
-         "src/rkt/db.rkt")
+         "src/rkt/db.rkt"
+         "src/rkt/batches.rkt")
 
 ;; ENVIRONMENT CONFIGURATION
 
@@ -100,14 +101,14 @@
 
 ;; CLI INTERFACE
 
-(define (create-db-conn)
+(define (create-conn)
   (let ([db-conn (create-db-conn
                   (conf-ref 'PGSQL_USERNAME)
                   (conf-ref 'PGSQL_DB))])
     db-conn))
 
 (define (render-proc)
-  (let ([db-conn (create-db-conn)])
+  (let ([db-conn (create-conn)])
     ;; (render-batch-files db-conn
     ;;                     (conf-ref 'HUGO_SRC))
     (render-hugo-files (conf-ref 'HUGO_SRC)
@@ -127,7 +128,7 @@
       "deploy_web.yml"))))
 
 (define (sync-batches)
-  (let ([db-conn (create-db-conn)]
+  (let ([db-conn (create-conn)]
         [batch-data (read-batch-data (conf-ref 'HUGO_SRC))])
     (update-batches db-conn batch-data)))
 

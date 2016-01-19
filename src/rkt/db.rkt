@@ -5,6 +5,7 @@
 (require db)
 
 (provide create-db-conn)
+(provide update-batches)
 
 (define (create-db-conn db-user
                         db-name)
@@ -16,3 +17,6 @@
     (lambda () (postgresql-connect #:user db-user
                                    #:database db-name)))))
 
+(define (update-batches db-conn
+                        batch-data)
+  null)
