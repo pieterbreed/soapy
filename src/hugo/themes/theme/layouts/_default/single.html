@@ -1,13 +1,14 @@
-{{ partial "header.html" }}
+{{ partial "header.html" . }}
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <p>{{ .Content }}</p>
+      <h1>{{ .Title }}</h1>
       </div>
     </div>
 
     <div class="container">
+      {{ .Content }}
 
       <hr>
 

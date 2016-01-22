@@ -1,7 +1,7 @@
 ---
 # baseurl: "http://soapy.pb.co.za/" # leave this unset
 languageCode: "en-us"
-title: "Soapy"
+title: "Soap Seller"
 metaDataFormat: "yaml"
 theme: "theme"
 publishdir: "../../output/hugo"
