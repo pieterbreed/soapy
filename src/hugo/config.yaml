@@ -3,7 +3,7 @@
 languageCode: "en-us"
 title: "Soapy"
 metaDataFormat: "yaml"
-theme: "soapy.pb.co.za-hugo-theme"
+theme: "theme"
 publishdir: "../../output/hugo"
 indexes:
   category: "categories"
