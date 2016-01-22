@@ -2,7 +2,6 @@
 # baseurl: "http://soapy.pb.co.za/" # leave this unset
 languageCode: "en-us"
 title: "Soapy"
-editor: "emacs -nw"
 metaDataFormat: "yaml"
 theme: "soapy.pb.co.za-hugo-theme"
 publishdir: "../../output/hugo"
