@@ -6,6 +6,14 @@
          (prefix-in p: parsack)
          "cli.rkt")
 
+(define (long-string-to-list-of-strings-parser)
+  (let* ([ws " \t\n\r"]
+         [ws-p (p:many1 (p:oneOf ws))]
+         [id-p (p:parser-compose 
+                (x <- (p:many1 (p:noneOf ws)))
+                (p:return (apply string x)))])
+    (p:sepBy1 id-p ws-p)))
+
 (define cli-tests
   (test-suite
    "testing the utility functions that parses the CLI"
@@ -24,8 +32,12 @@
                  "can identify the operator and retain the params")
    (check-equal? (p:parse-result (split-after-operator-parser)
                                  "op2")
-                 (list 'op2 ""))))
+                 (list 'op2 ""))
 
+   (check-equal? (p:parse-result (long-string-to-list-of-strings-parser)
+                                 "one  two three     \tfour")
+                 (list "one" "two" "three" "four")
+                 "simple parameter string")))
 
   ;; (test-suite
   ;;  "testing the cli api"
