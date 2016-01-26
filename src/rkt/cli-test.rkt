@@ -39,8 +39,17 @@
                  (list "one" "two" "three" "four")
                  "simple parameter string")
 
-  (let ([spec (hash 'op (vector identity (long-string-to-list-of-strings-parser)))])
-    (check-equal? (run-cli spec #("op" "one" "two"))
-                  (list "one" "two")))))
+
+   (let* ([win-op (lambda x (apply list 0 x))]
+          [spec (hash 'op (vector win-op (long-string-to-list-of-strings-parser))
+                      'op2 (vector win-op (long-string-to-list-of-strings-parser))
+                      'op3 (vector win-op (long-string-to-list-of-strings-parser)))])
+     (check-equal? (run-cli spec #("op" "one" "two"))
+                   (list 0 (list "one" "two")))
+     (check-equal? (run-cli spec #("op2" "three"))
+                   (list 0 (list "three")))
+     ;; (check-equal? (run-cli spec #("op3" ""))
+     ;;               (list 0 (list "")))
+     )))
 
 (exit (run-tests cli-tests))

@@ -133,6 +133,23 @@
     (log-jarvis-debug "Found the markdown files to sync with ~s" batch-data)
     null))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; cli parsers
+
+(define (do-nothing)
+  (log-jarvis-info "Doing nothing :)")
+                   
+                   
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+(define commands-cli-api-spec
+  (hash
+   'noop (vector (lambda _ (do-nothing))
+                 (capture-everything-parser))))
 
 (define commands
   (hash
