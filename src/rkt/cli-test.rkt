@@ -37,13 +37,10 @@
    (check-equal? (p:parse-result (long-string-to-list-of-strings-parser)
                                  "one  two three     \tfour")
                  (list "one" "two" "three" "four")
-                 "simple parameter string")))
+                 "simple parameter string")
 
-  ;; (test-suite
-  ;;  "testing the cli api"
-  ;;  ;; this parser should just return a list of strings
-  ;;  (let ([spec (hash 'op #(identity
-  ;;                          ))])
-     
+  (let ([spec (hash 'op (vector identity (long-string-to-list-of-strings-parser)))])
+    (check-equal? (run-cli spec #("op" "one" "two"))
+                  (list "one" "two")))))
 
 (exit (run-tests cli-tests))

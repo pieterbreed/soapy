@@ -24,11 +24,23 @@
                      (list (string->symbol (apply string op-s))
                            (apply string rest)))))
 
+(define (run-cli spec cli-params)
+  (let* ([cli-str (string-join (vector->list cli-params))]
+         [op-params (p:parse-result (split-after-operator-parser)
+                                    cli-str)]
+         [op (first op-params)]
+         [params (second op-params)]
+         [op-record (dict-ref spec op)]
+         [parser (vector-ref op-record 1)]
+         [data (p:parse-result parser params)])
+    ((vector-ref op-record 0) data)))
+
 ;; (define (find-op-parser)
 ;;   (let ([ops (map symbol->symbol-parser (dict-keys options))])
 ;;     (log-cli-debug "found these operators: ~s" ops)
     
 (provide symbol->symbol-parser
          symbols->symbols-choice-parser
-         split-after-operator-parser)
+         split-after-operator-parser
+         run-cli)
 
