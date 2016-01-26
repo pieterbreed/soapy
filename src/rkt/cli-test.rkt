@@ -20,6 +20,10 @@
 
    (check-equal? (p:parse-result (split-after-operator-parser)
                                  "  op1   some other stuff ")
-                 (list 'op1 "some other stuff "))))
+                 (list 'op1 "some other stuff ")
+                 "can identify the operator and retain the params")
+   (check-equal? (p:parse-result (split-after-operator-parser)
+                                 "op2")
+                 (list 'op2 ""))))
 
 (exit (run-tests cli-tests))

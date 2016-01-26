@@ -3,8 +3,6 @@
 
 ;;; in which a CLI is treated like a "language" with a parser and everything
 
-(define-logger cli)
-
 (require (prefix-in p: parsack))
 
 (define cli-one-line (string-join (vector->list (current-command-line-arguments))
@@ -20,7 +18,6 @@
 (define (split-after-operator-parser)
   (p:parser-compose p:$spaces
                     (op-s <- p:$identifier)
-                    p:$space
                     p:$spaces
                     (rest <- (p:many p:$anyChar))
                     (p:return
