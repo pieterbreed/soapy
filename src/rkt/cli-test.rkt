@@ -26,4 +26,12 @@
                                  "op2")
                  (list 'op2 ""))))
 
+
+  ;; (test-suite
+  ;;  "testing the cli api"
+  ;;  ;; this parser should just return a list of strings
+  ;;  (let ([spec (hash 'op #(identity
+  ;;                          ))])
+     
+
 (exit (run-tests cli-tests))
