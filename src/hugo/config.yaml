@@ -4,7 +4,6 @@ languageCode: "en-us"
 title: "Soap Seller"
 metaDataFormat: "yaml"
 theme: "theme"
-publishdir: "../../output/hugo"
 indexes:
   category: "categories"
   tag: "tags"

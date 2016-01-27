@@ -13,12 +13,18 @@
       notify:
         - reload nginx
 
-    - name: Set up virtual hosts
+    - name: Deploy the generated hugo output files to soapshop
+      copy:
+        dest: "/usr/share/nginx/soapshop"
+        src: "../../output/hugo"
+        owner: www-data
+      tags:
+        - copy-html
+
+    - name: Set up virtual host for soapshop
       template:
-        src: "nginx-conf/nginx_site.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/{{ item.domain }}.{{ tld }}.conf"
-      with_items:
-        - domain: soapshop
+        src: "nginx-conf/nginx_soapshop.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-available/soapshop.{{ tld }}.conf"
       notify:
         - reload nginx
         
