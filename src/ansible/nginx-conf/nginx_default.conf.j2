@@ -1,5 +1,22 @@
 server {
   listen {{ nginx.ip }}:80 default_server;
-  root /usr/share/nginx/html;
-  index index.html index.htm;
+  server_name webserver.{{ tld }};
+  return 301 https://webserver.{{ tld }}$request_uri;
+}
+
+server {
+  listen {{ nginx.ip }}:443 ssl default_server;
+  server_name webserver.{{ tld }};
+
+  # add Strict-Transport-Security to prevent man in the middle attacks
+  add_header Strict-Transport-Security "max-age=31536000";         
+
+  ssl on;
+  ssl_certificate {{ letsencrypt_live_path }}/webserver.{{ tld }}/fullchain.pem;
+  ssl_certificate_key {{ letsencrypt_live_path }}/webserver.{{ tld }}/privkey.pem;
+
+  location / {
+    root   /usr/share/nginx/html;
+    index  index.html;
+  }
 } 

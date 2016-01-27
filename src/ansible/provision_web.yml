@@ -6,7 +6,7 @@
         name: nginx
         state: present
 
-    - name: Create/Set the default site
+    - name: Set the nginx site config file for default
       template:
         src: "nginx-conf/nginx_default.conf.j2"
         dest: "{{ nginx.config_dir }}/sites-available/default"
@@ -17,7 +17,7 @@
       copy:
         dest: "/usr/share/nginx/soapshop"
         src: "../../output/hugo"
-        owner: www-data
+        owner: root
       tags:
         - copy-html
 
