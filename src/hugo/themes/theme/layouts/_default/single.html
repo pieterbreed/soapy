@@ -3,9 +3,13 @@
 <div class="row">
   <div class="col-sm-8">
     <div style="border: 1px black">
-    <!-- Body content -->
-    {{ .Content }}
-    <!-- /Body content -->
+      <!-- Body content -->
+      <h1>{{ .Title }}</h1>
+      <p><small>Batch date: {{ .Date }}</small></p>
+      <div>
+        {{ .Content }}
+      </div>
+      <!-- /Body content -->
     </div>
   </div>
 
