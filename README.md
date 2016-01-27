@@ -3,6 +3,20 @@ Soapy
 
 A collection of software that will help me sell my mother's homemade soap bars.
 
+How to do stuff
+---------------
+
+All these scripts are meant to be run from the top-level.
+
+### deploy the site
+
+
+```
+pushd src/ansible
+$ (export WEBSERVER_PUBLIC_DNSNAME=soapshop.pb.co.za WEBSERVER_PUBLIC_PORT=443; ../../render.sh && ansible-playbook provision_web.yml --tags=copy-html && terminal-notifier -title "Done" -message "deploy finished" -appIcon ~/Source/seep-besigheid/output/hugo/apple-touch-icon.png -open "$WEBSERVER_PUBLIC_DNSNAME")
+popd
+```
+
 Reason for existence
 --------------------
 
