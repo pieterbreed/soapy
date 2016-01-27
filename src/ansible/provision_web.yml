@@ -1,0 +1,12 @@
+---
+- hosts: webserver
+  tasks:
+    - include_vars: "webserver_config.yml"
+    - name: Update the system
+      apt:
+        cache_valid_time: 3600
+        force: yes
+        install_recommends: yes
+        update_cache: yes
+        upgrade: full
+        state: latest

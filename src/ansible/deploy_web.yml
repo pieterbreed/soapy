@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: webserver
   vars:
     vhost: "{{ lookup('env', 'WEBSERVER_PUBLIC_DNSNAME') }}"
     port:  "{{ lookup('env', 'WEBSERVER_PUBLIC_PORT') }}"

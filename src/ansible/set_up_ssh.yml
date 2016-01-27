@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: "Copy my public ssh key over"
+      authorized_key:
+        exclusive: yes
+        key: "https://github.com/pieterbreed.keys"
+        state: present
+        user: "{{ ansible_user_id }}"
