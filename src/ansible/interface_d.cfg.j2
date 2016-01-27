@@ -1,0 +1,7 @@
+auto eth0:{{ item.interface_nr }}
+iface eth0:{{ item.interface_nr }} inet static
+name {{ item.interface_name }}
+address {{ item.interface_address }}
+netmask {{ item.interface_netmask }}
+broadcast {{ item.interface_broadcast }}
+

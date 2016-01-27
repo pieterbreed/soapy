@@ -1,0 +1,20 @@
+---
+- hosts: webserver
+  tasks:
+    - name: Make ips available to eth0
+      notify:
+        - reboot
+      template:
+        src: interface_d.cfg.j2
+        dest: "{{ ip.conf_d_folder }}/{{ item.interface_nr }}.cfg"
+      with_items:
+        - interface_nr: 0
+          interface_name: "Usable IP 2"
+          interface_address: "{{ ip.usable2 }}"
+          interface_netmask: "{{ ip.netmask }}"
+          interface_broadcast: "{{ ip.broadcast }}"
+          interface_network: "{{ ip.gateway }}"
+  handlers:
+    - name: reboot
+      shell: "reboot"
+          

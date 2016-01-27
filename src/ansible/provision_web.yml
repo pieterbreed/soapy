@@ -2,11 +2,24 @@
 - hosts: webserver
   tasks:
     - include_vars: "webserver_config.yml"
-    - name: Update the system
+    - name: "Install nginx"
       apt:
-        cache_valid_time: 3600
-        force: yes
-        install_recommends: yes
-        update_cache: yes
-        upgrade: full
-        state: latest
+        name: nginx
+        state: present
+    - name: "Create/Set the default site"
+      template:
+        src: nginx_default.conf.j2
+        dest: "{{ nginx.config_dir }}/sites-available/default"
+      notify:
+        - reload nginx
+    - name: "Make sure nginx is at least running"
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+  handlers:
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded
+        

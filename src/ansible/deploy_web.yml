@@ -4,10 +4,10 @@
     vhost: "{{ lookup('env', 'WEBSERVER_PUBLIC_DNSNAME') }}"
     port:  "{{ lookup('env', 'WEBSERVER_PUBLIC_PORT') }}"
   tasks:
-    - name: Update the nginx config file
+    - name: Update the nginx default config file
       template:
         src: "nginx.conf.j2"
-        dest: "{{ nginx_config_dest }}"
+        dest: "{{ nginx_config_path }}/sites-available/default"
       notify:
         - reload nginx
     - name: Copy the static content accross
