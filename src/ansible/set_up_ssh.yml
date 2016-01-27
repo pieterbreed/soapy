@@ -4,6 +4,14 @@
     - name: "Copy my public ssh key over"
       authorized_key:
         exclusive: yes
-        key: "https://github.com/pieterbreed.keys"
+        key: "{{ github_keys_file }}"
         state: present
         user: "{{ ansible_user_id }}"
+
+- hosts: all
+  vars:
+    sshd:
+      X11Forwarding: no
+      PrintMotd: yes
+  roles:
+    - willshersystems.sshd
