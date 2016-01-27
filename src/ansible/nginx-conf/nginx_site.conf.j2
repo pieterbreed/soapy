@@ -1,0 +1,13 @@
+server {
+  listen {{ nginx.ip }}:443 ssl;
+  server_name {{ item.domain }}.{{ tld }};
+  ssl on;
+  ssl_certificate {{ letsencrypt_live_path }}/{{ item.domain }}.{{ tld }}/fullchain.pem;
+  ssl_certificate_key {{ letsencrypt_live_path }}/{{ item.domain }}.{{ tld }}/privkey.pem;
+  
+
+  location / {
+    root   /usr/share/nginx/html;
+    index  index.html;
+  }
+} 

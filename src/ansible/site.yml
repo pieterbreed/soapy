@@ -1,2 +1,4 @@
 ---
 - include: set_up_ssh.yml
+- include: networking.yml
+- include: provision_web.yml

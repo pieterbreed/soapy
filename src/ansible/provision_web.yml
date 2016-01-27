@@ -1,15 +1,32 @@
 ---
 - hosts: webserver
   tasks:
-    - include_vars: "webserver_config.yml"
     - name: "Install nginx"
       apt:
         name: nginx
         state: present
     - name: "Create/Set the default site"
       template:
-        src: nginx_default.conf.j2
+        src: "nginx-conf/nginx_default.conf.j2"
         dest: "{{ nginx.config_dir }}/sites-available/default"
+      notify:
+        - reload nginx
+    - name: Set up virtual hosts
+      template:
+        src: "nginx-conf/nginx_site.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-available/{{ item.domain}}.{{ tld }}.conf"
+      with_items:
+        - domain: soapshop
+      notify:
+        - reload nginx
+    - name: Set the sites-enabled symlinks
+      file:
+        src: "{{ nginx.config_dir }}/sites-available/{{ item }}"
+        dest: "{{ nginx.config_dir }}/sites-enabled/{{ item }}"
+        state: link
+      with_items:
+        - default
+        - "soapshop.{{ tld }}.conf"
       notify:
         - reload nginx
     - name: "Make sure nginx is at least running"
