@@ -13,10 +13,10 @@ then
 fi
 logger "Found TOP: $TOP"
 
-BASEURL="$WEBSERVER_PUBLIC_SCHEME://$WEBSERVER_PUBLIC_DNSNAME:$WEBSERVER_PUBLIC_PORT"
-if [ "$BASEURL" = "://:" ];
+BASEURL="https://$WEBSERVER_PUBLIC_DNSNAME:$WEBSERVER_PUBLIC_PORT"
+if [ "$BASEURL" = "https://:" ];
 then
-    echo "Set variables: \$WEBSERVER_PUBLIC_SCHEME://\$WEBSERVER_PUBLIC_DNSNAME:\$WEBSERVER_PUBLIC_PORT"
+    echo "Set variables: https://\$WEBSERVER_PUBLIC_DNSNAME:\$WEBSERVER_PUBLIC_PORT"
     exit 1
 fi
 
@@ -35,5 +35,3 @@ logger "Done"
 
 find "$TOP/output" -type f | xargs ls -l
 
-
-publishdir: "../../output/hugo"

@@ -14,10 +14,11 @@
         - reload nginx
 
     - name: Deploy the generated hugo output files to soapshop
-      copy:
-        dest: "/usr/share/nginx/soapshop"
+      synchronize:
         src: "../../output/hugo"
-        owner: root
+        dest: "/usr/share/nginx/soapshop"
+        group: no
+        owner: no
       tags:
         - copy-html
 

@@ -3,15 +3,16 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>I sell soap &#x1F60A;</h1>
-        <p>Or more accurately: My mother makes soap and I auction it for her, using this website.</p>
+        <h1>{{ .Site.Title }} &#x1F60A;</h1>
+        <p>Or more accurately: My mother makes soap and I am going to try and sell some of it for her, using this website.</p>
+        <p><small>If you are seeing this, then either you are one of my very best friends, or you know one of my very best friends.</small></p>
+        <p><small>Thank you for being here &#x1F64F;</small></p>
         <p><a class="btn btn-primary btn-lg" href="/how-does-this-work/" role="button">Learn more &raquo;</a></p>
       </div>
-    </div>
+    </div> <!-- /jumbotron -->
 
     <div class="container">
-      <!-- Example row of columns -->
-      <h1>Current Batches</h1>
+      <h1>Batches</h1>
       <div class="row">
 
         {{ range .Data.Pages }}

@@ -1,7 +1,7 @@
 ---
 # baseurl: "http://soapy.pb.co.za/" # leave this unset
 languageCode: "en-us"
-title: "Soap Seller"
+title: "The Amazing Soap Shop Experiment"
 metaDataFormat: "yaml"
 theme: "theme"
 indexes:
