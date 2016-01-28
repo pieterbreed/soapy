@@ -39,6 +39,9 @@
         - "experiment.{{ tld }}.conf"
       notify:
         - reload nginx
+
+    - name: Generate the certificates if required
+      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/experiment.{{ tld }}/fullchain.pem"
         
     - name: "Make sure nginx is at least running"
       service:
