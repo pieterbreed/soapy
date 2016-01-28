@@ -6,35 +6,24 @@ slug: "how-does-this-work"
 
 ## Too long; don't want to read
 
- 1. Look at the batches that are available
- 1. Decide on a price you think is fair
- 1. Send me an email with those details
- 1. I will arrange for payment and then delivery
+ 1. Look through one the batches for which I have stock (I'll link from here later, remind me if you see this)
+ 1. Tip me any amount that you think is fair. Any price. (I'll put a tip jar up here, remind me if you see this)
+ 1. [Send me an email](mailto:pieter@pb.co.za) and tell me from which batch you would like to receive one bar.
+ 1. I will arrange for payment and then delivery.
  1. Enjoy soapy goodness!
 
 ## This is an experiment...
 
-I am trying to secure my future supply of soap and figured that if I can arrange for the soap-making not to cost a fortune then my mother will continue making soap.
+...in trying to see if I can make a socially responsible business. If you need more info about this, please ask me to expand on it.
  
-## How this works
-
-At the moment this site is invite-only. I've emailed a few of my friends the link to this site so that they can take a look at the different batches that are available to be had.
-
-If you are interested, please send me an email that contains the following information:
-
- - Which soap you would like to buy (Each batch has a name)
- - How many bars you would like to buy
- - What you want to pay for the consignment...
- 
- That's right. This works on a pay-what-you-want basis. The first order of business is to see if anybody is willing to fork out cold hard cash for the product. Right now, this means a prioritization of first-come-first-served and highest-bidder.
- 
- I will publish the average price for each batch so you can get an idea of how much it cost to produce. I will probably not fullfill an order for a price that I think is ridiculous, but beyond that I truly hope that you will pay a price that you consider fair.
-
 ## The fine print
 
-Firstly. __No promises are being made for suitability__. This is home-made soap and you have to apply your mind to decide if you want to use it on your skin or not. In order to make this fair, __I don't set a price, you do__.
+ - The soap bars weigh about __100g each__. (_maybe_ means _not-exactly_) 
+ - The soap bars are __cut by hand__ (using a kitchen knife).
+ - __No promises are being made for suitability__. This is home-made soap and you have to apply your mind to decide if you want to use it on your skin or not. In order to make this fair, __I don't set a price, you do__.
+ - I will send your first bar for free. [Send me an email](mailto:pieter@pb.co.za) so I know who you are and where you live. I'll take care of packaging and everything.
 
-I am  happy to arrange a __free sample__ for you.
+Lastly, if __for any reason__ you don't like the product, [please let me know](mailto:pieter@pb.co.za) and __I will refund all your monies__, no questions asked. 
 
-Lastly, if for any reason you don't like the product, please let me know and __I will refund you in full, no questions asked__. Seriously. If you think the product is not worth what you paid for it, email me and I will refund all of your money. __You don't even need to send it back__, you can keep it if you want.
+Seriously. If you think the product is not worth what you paid for it, I will pay all of you money back, I promise. __You don't even need to send it back to me__, you can keep it if you want...
 

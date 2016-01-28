@@ -1,9 +1,10 @@
 {{ partial "header.html" . }}
 
 <div class="alert alert-success" role="alert">
-  <strong>Woohoo!</strong>
-  <p>If you can see this then the experiment worked! &#x1F64C</p>
-  <p>You can return to the <a href="https://soapshop.pb.co.za">main site again using this link</a></p> 
+  <strong>Woohoo! &#x1F64C</strong>
+  <p>If you can see this then the experiment worked!</p>
+  <p>The experimental version of the site works just like the normal one does, except that this is where I'm testing out my ideas before I put them up on the main site.</p>
+  <p><a class="btn btn-info" href="https://soapshop.pb.co.za">Go back when you're done</a></p>
 </div>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -11,21 +12,29 @@
       <div class="container">
         <h1>{{ .Site.Title }} &#x1F60A;</h1>
         <p>Or more accurately: My mother makes soap and I am going to try and sell some of it for her, using this website.</p>
-        <p><small>If you are seeing this, then either you are one of my very best friends, or you know one of my very best friends.</small></p>
+        <p><small>If you are seeing this, then you are one of my very best friends, or you are becoming one of my very best friends.</small></p>
         <p><small>Thank you for being here &#x1F64F;</small></p>
         <p><a class="btn btn-primary btn-lg" href="/how-does-this-work/" role="button">Learn more &raquo;</a></p>
       </div>
     </div> <!-- /jumbotron -->
 
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Extra Notes</h3>
+      </div>
+      <div class="panel-body">
+The soap is made with pure oils chosen for their skin loving properties. Fragrancing is done with Essential Oils only and no artificial fragrances are used. Fragrancing is always very subtle in order to prevent the possibility of allergic reactions on sensitive skin. All the soaps are made using the Cold Process method. All recipes are calculated in order that the final soap will not only clean your skin, but it will feed it as well so that in the end you will have a softer, healthier skin.
+      </div>
+    </div>
+    
     <div class="container">
-      <h1>Batches</h1>
+      <h1>Batches of which I currently have stock</h1>
       <div class="row">
 
         {{ range .Data.Pages }}
         {{ if eq "batches" .Type }}
         <div class="col-md-4">
-          <h3>{{ .Title }}</h3>
-          <p><a class="btn btn-info" href="{{ .Permalink }}" role="button">View Ingredients &raquo;</a></p>
+          <p><a class="btn btn-info" href="{{ .Permalink }}" role="button">View {{ .Title }} &raquo;</a></p>
         </div>
         {{ end }}
         {{ end }}        
