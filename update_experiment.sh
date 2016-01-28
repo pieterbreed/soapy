@@ -11,11 +11,16 @@ then
   # to the script (e.g. permissions re-evaled after suid)
   exit 1  # fail
 fi
+
+SRC_BRANCH="$1"
+if [ ".$SRC_BRANCH" = "." ]; then
+    SRC_BRANCH="soapshop"
+fi
   
 logger "Found TOP at: $TOP"
 
 pushd "$TOP/src"
-BRANCH_NAME=`git status -bs --porcelain | head -n 1 | cut -d' ' -f2`
+BRANCH_NAME=`git status -bs --porcelain | head -n 1 | cut -d' ' -f2 | cut -d '.' -f1`
 logger "BRANCH_NAME=$BRANCH_NAME" 
-(export BRANCH=$BRANCH_NAME; find . -type f -print0 | xargs -0 perl -i.bak -pe 's/soapshop/$ENV{'''BRANCH'''}/g')
+(export BRANCH=$BRANCH_NAME; export SRC_BRANCH; find . -type f -print0 | xargs -0 perl -i.bak -pe 's/$ENV{''SRC_BRANCH''}/$ENV{''BRANCH''}/g')
 popd
