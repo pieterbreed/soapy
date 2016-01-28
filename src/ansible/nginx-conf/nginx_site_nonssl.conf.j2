@@ -1,13 +1,13 @@
 server {
   listen {{ nginx.ip }}:80;
-  server_name experiment.{{ tld }};
+  server_name soapshop.{{ tld }};
 
   location ^~ /.well-known/acme-challenge/ {
-    root /usr/share/nginx/experiment;
+    root /usr/share/nginx/soapshop;
   }
 
   location / {
-    return 301 https://experiment.{{ tld }}$request_uri;
+    return 301 https://soapshop.{{ tld }}$request_uri;
   }
 
 }

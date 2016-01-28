@@ -1,16 +1,16 @@
 server {
   listen {{ nginx.ip }}:443 ssl;
-  server_name experiment.{{ tld }};
+  server_name soapshop.{{ tld }};
 
   # add Strict-Transport-Security to prevent man in the middle attacks
   add_header Strict-Transport-Security "max-age=31536000";         
 
   ssl on;
-  ssl_certificate {{ letsencrypt_live_path }}/experiment.{{ tld }}/fullchain.pem;
-  ssl_certificate_key {{ letsencrypt_live_path }}/experiment.{{ tld }}/privkey.pem;
+  ssl_certificate {{ letsencrypt_live_path }}/soapshop.{{ tld }}/fullchain.pem;
+  ssl_certificate_key {{ letsencrypt_live_path }}/soapshop.{{ tld }}/privkey.pem;
 
   location / {
-    root   /usr/share/nginx/experiment/hugo;
+    root   /usr/share/nginx/soapshop/hugo;
     index  index.html;
   }
 } 
