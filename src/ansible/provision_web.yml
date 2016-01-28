@@ -21,17 +21,17 @@
       notify:
         - reload nginx
 
-    - name: Set up non-ssl virtual host config for soapshop site
+    - name: Set up non-ssl virtual host config for experiment site
       template:
         src: "nginx-conf/nginx_site_nonssl.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/soapshop.{{ tld }}_nonssl.conf"
+        dest: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}_nonssl.conf"
       notify:
         - reload nginx
 
-    - name: Set up non-ssl symlink for soapshop site
+    - name: Set up non-ssl symlink for experiment site
       file:
-        src: "{{ nginx.config_dir }}/sites-available/soapshop.{{ tld }}_nonssl.conf"
-        dest: "{{ nginx.config_dir }}/sites-enabled/soapshop.{{ tld }}_nonssl.conf"
+        src: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}_nonssl.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/experiment.{{ tld }}_nonssl.conf"
         state: link
       notify:
         - reload nginx
@@ -41,32 +41,32 @@
         name: nginx
         state: reloaded
 
-    - name: Set up ssl virtual host for soapshop site
+    - name: Set up ssl virtual host for experiment site
       template:
         src: "nginx-conf/nginx_site.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/soapshop.{{ tld }}.conf"
+        dest: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}.conf"
       notify:
         - reload nginx
         
-    - name: Set the sites-enabled symlink for soapshop site
+    - name: Set the sites-enabled symlink for experiment site
       file:
-        src: "{{ nginx.config_dir }}/sites-available/soapshop.{{ tld }}.conf"
-        dest: "{{ nginx.config_dir }}/sites-enabled/soapshop.{{ tld }}.conf"
+        src: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/experiment.{{ tld }}.conf"
         state: link
       notify:
         - reload nginx
 
-    - name: Deploy the generated hugo output files to soapshop
+    - name: Deploy the generated hugo output files to experiment
       synchronize:
         src: "../../output/hugo"
-        dest: "/usr/share/nginx/soapshop"
+        dest: "/usr/share/nginx/experiment"
         group: no
         owner: no
       tags:
         - copy-html
 
     - name: Generate the certificates if required
-      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/soapshop.{{ tld }}/fullchain.pem"
+      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/experiment.{{ tld }}/fullchain.pem"
         
     - name: "Make sure nginx is at least running"
       service:

@@ -12,9 +12,12 @@ then
   exit 1  # fail
 fi
   
-logger "Found TOP at: $TOP"
+COPY="$1"
+if ! [ ".$COPY" = "." ]; then
+    COPY="--tags=copy-html"
+fi
 
-export WEBSERVER_PUBLIC_DNSNAME=soapshop.pb.co.za
+export WEBSERVER_PUBLIC_DNSNAME=experiment.pb.co.za
 export WEBSERVER_PUBLIC_PORT=443
 
 pushd "$TOP"
@@ -23,7 +26,7 @@ pushd ../..
 ./render.sh
 popd
 
-ansible-playbook provision_web.yml -vvvv
+ansible-playbook provision_web.yml $COPY 
 
 terminal-notifier -title "Done" \
                   -message "deploy finished" \
