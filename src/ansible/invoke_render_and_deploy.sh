@@ -25,6 +25,9 @@ popd
 
 ansible-playbook provision_web.yml 
 
-terminal-notifier -title "Done" -message "deploy finished" -appIcon ~"$TOP/../../output/hugo/apple-touch-icon.png -open "$WEBSERVER_PUBLIC_DNSNAME")
+terminal-notifier -title "Done" \
+                  -message "deploy finished" \
+                  -appIcon "$TOP/../../output/hugo/apple-touch-icon.png" \
+                  --open "$WEBSERVER_PUBLIC_DNSNAME"
 
 popd
