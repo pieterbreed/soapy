@@ -8,13 +8,22 @@ How to do stuff
 
 All these scripts are meant to be run from the top-level.
 
+### Switch the domain name at the same time you switch to a different git branch
+
+Use the `/update_experiment.sh` script. If you are in a branch, that you would like to deploy to `git-branch-name`.tld then run this script without parameters. If you are in master, you have to undo that work and run it with one parameter.
+
 ### deploy the site
 
+#### Deploys only copy changes
 
 ```
-pushd src/ansible
-$ (export WEBSERVER_PUBLIC_DNSNAME=soapshop.pb.co.za WEBSERVER_PUBLIC_PORT=443; ../../render.sh && ansible-playbook provision_web.yml --tags=copy-html && terminal-notifier -title "Done" -message "deploy finished" -appIcon ~/Source/seep-besigheid/output/hugo/apple-touch-icon.png -open "$WEBSERVER_PUBLIC_DNSNAME")
-popd
+src/ansible/invoke_render_and_deploy.sh copy
+```
+
+#### Runs the entire stack provisioning
+
+```
+src/ansible/invoke_render_and_deploy.sh
 ```
 
 Reason for existence
