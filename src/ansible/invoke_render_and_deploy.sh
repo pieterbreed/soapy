@@ -17,9 +17,6 @@ if ! [ ".$COPY" = "." ]; then
     COPY="--tags=copy-html"
 fi
 
-export WEBSERVER_PUBLIC_DNSNAME=experiment.pb.co.za
-export WEBSERVER_PUBLIC_PORT=443
-
 pushd "$TOP"
 
 pushd ../..
