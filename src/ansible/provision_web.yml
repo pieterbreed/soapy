@@ -9,7 +9,7 @@
     - name: Set the nginx site config file for webserver
       template:
         src: "nginx-conf/nginx_webserver.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/webserver"
+        dest: "{{ nginx.config_dir }}/sites-available/webserver.{{ tld }}.conf"
       notify:
         - reload nginx
 
