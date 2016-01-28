@@ -12,15 +12,19 @@ then
   exit 1  # fail
 fi
 
-SRC_BRANCH="$1"
-if [ ".$SRC_BRANCH" = "." ]; then
-    SRC_BRANCH="soapshop"
+SRC_NAME="$1"
+if [ ".$SRC_NAME" = "." ]; then
+    SRC_NAME="soapshop"
 fi
   
-logger "Found TOP at: $TOP"
-
 pushd "$TOP/src"
+
 BRANCH_NAME=`git status -bs --porcelain | head -n 1 | cut -d' ' -f2 | cut -d '.' -f1`
+DEST_NAME="$BRANCH_NAME"
+if [ "$BRANCH_NAME" = "master" ]; then
+    DEST_NAME="soapshop"
+fi
+
 logger "BRANCH_NAME=$BRANCH_NAME" 
-(export BRANCH=$BRANCH_NAME; export SRC_BRANCH; find . -type f -print0 | xargs -0 perl -i.bak -pe 's/$ENV{''SRC_BRANCH''}/$ENV{''BRANCH''}/g')
+(export DEST=$DEST_NAME; export SRC=$SRC_NAME; find . -type f -print0 | xargs -0 perl -i.bak -pe 's/$ENV{''SRC''}/$ENV{''DEST''}/g')
 popd
