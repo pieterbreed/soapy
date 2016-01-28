@@ -6,6 +6,7 @@
       <!-- Body content -->
       <h1>{{ .Title }}</h1>
       <p><small>Batch date: {{ .Date }}</small></p>
+      <hr>
       <div>
         {{ .Content }}
       </div>
@@ -23,17 +24,10 @@
     </a>
     <a href="/how-does-this-work/" class="list-group-item">
       <h4 class="list-group-item-heading">How does this work?</h4>
+      <p>{{ .Title }}</p>
     </a>
   </div>
   
-  <div class="col-sm-3 col-sm-offset-1">
-    <div class="sidebar-module sidebar-module-inset">
-
-      empty
-
-    </div>
-  </div>
-
 </div>
 
 {{ partial "footer.html" . }}
