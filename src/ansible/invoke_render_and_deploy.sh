@@ -26,7 +26,7 @@ popd
 ansible-playbook provision_web.yml $COPY 
 
 terminal-notifier -title "Done" \
-                  -message "deploy finished" \
+                  -message "deploy finished $PROPERTY.$TLD" \
                   -appIcon "$TOP/../../output/hugo/apple-touch-icon.png" \
                   --open "$WEBSERVER_PUBLIC_DNSNAME"
 

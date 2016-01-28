@@ -73,6 +73,12 @@
         name: nginx
         state: started
         enabled: yes
+
+    - name: Deployed to debug
+      debug:
+        msg: "Deployed to {{ property }}.{{ tld }}"
+      tags:
+        - copy-html
         
   handlers:
     - name: reload nginx

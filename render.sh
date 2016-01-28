@@ -31,7 +31,8 @@ pushd "$TOP/src/hugo"
 hugo --destination="../../output/hugo" --baseURL="$BASEURL" --verbose --buildDrafts 
 popd
 
-logger "Done"
-
 find "$TOP/output" -type f | xargs ls -l
+echo "Rendered to $PROPERTY.$TLD"
+
+
 
