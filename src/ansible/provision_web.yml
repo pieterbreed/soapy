@@ -13,19 +13,19 @@
       notify:
         - reload nginx
 
-    - name: Deploy the generated hugo output files to soapshop
+    - name: Deploy the generated hugo output files to experiment
       synchronize:
         src: "../../output/hugo"
-        dest: "/usr/share/nginx/soapshop"
+        dest: "/usr/share/nginx/experiment"
         group: no
         owner: no
       tags:
         - copy-html
 
-    - name: Set up virtual host for soapshop
+    - name: Set up virtual host for experiment
       template:
-        src: "nginx-conf/nginx_soapshop.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/soapshop.{{ tld }}.conf"
+        src: "nginx-conf/nginx_experiment.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}.conf"
       notify:
         - reload nginx
         
@@ -36,7 +36,7 @@
         state: link
       with_items:
         - default
-        - "soapshop.{{ tld }}.conf"
+        - "experiment.{{ tld }}.conf"
       notify:
         - reload nginx
         
