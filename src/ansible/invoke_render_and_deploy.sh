@@ -20,11 +20,10 @@ export WEBSERVER_PUBLIC_PORT=443
 pushd "$TOP"
 
 pushd ../..
-render.sh
+./render.sh
 popd
 
-ansible-playbook provision_web.yml \
-                 --tags=copy-html
+ansible-playbook provision_web.yml 
 
 terminal-notifier -title "Done" -message "deploy finished" -appIcon ~"$TOP/../../output/hugo/apple-touch-icon.png -open "$WEBSERVER_PUBLIC_DNSNAME")
 

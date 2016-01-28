@@ -24,7 +24,7 @@
 
     - name: Set up virtual host for experiment
       template:
-        src: "nginx-conf/nginx_experiment.conf.j2"
+        src: "nginx-conf/nginx_site.conf.j2"
         dest: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}.conf"
       notify:
         - reload nginx
