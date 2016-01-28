@@ -6,6 +6,10 @@
         name: nginx
         state: present
 
+    - name: Test current nginx config
+      shell: "nginx -t"
+      changed_when: false
+
     - name: Set the nginx site config file for webserver
       template:
         src: "nginx-conf/nginx_webserver.conf.j2"

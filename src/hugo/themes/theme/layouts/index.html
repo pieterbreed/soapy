@@ -3,7 +3,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>{{ .Site.Title }} &#x1F60A;</h1>
+        <h1>{{ .Site.Title }}{{ if eq "1" (getenv "IS_EXP") }} EXPERIMENT{{end}} &#x1F60A;</h1>
         <p>Or more accurately: My mother makes soap and I am going to try and sell some of it for her, using this website.</p>
         <p><small>If you are seeing this, then you are one of my very best friends, or you are becoming one of my very best friends.</small></p>
         <p><small>Thank you for being here &#x1F64F;</small></p>
@@ -35,11 +35,22 @@ The soap is made with pure oils chosen for their skin loving properties. Fragran
       </div>
     </div> <!-- /container -->
 
-    <hr>
 
+    {{ if eq "1" (getenv "IS_EXP") }}
+
+    <hr>
+    <div class="alert alert-info" role="alert">
+      <p><strong>Stop taking part in experiments</strong></p>
+      <p><a class="btn btn-success" href="https://soapshop.pb.co.za">Find out more &raquo;</a></p>
+    </div>
+
+    {{ else }}
+    
+    <hr>
     <div class="alert alert-info" role="alert">
       <p><strong>Help me take part in experiments! :)</strong></p>
       <p><a class="btn btn-info" href="https://experiment.pb.co.za">Find out more &raquo;</a></p>
     </div>
+    {{ end }}
 
 {{ partial "footer.html" . }}
