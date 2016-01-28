@@ -6,10 +6,53 @@
         name: nginx
         state: present
 
-    - name: Set the nginx site config file for default
+    - name: Set the nginx site config file for webserver
       template:
-        src: "nginx-conf/nginx_default.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/default"
+        src: "nginx-conf/nginx_webserver.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-available/webserver"
+      notify:
+        - reload nginx
+
+    - name: Set the sites-enabled symlink for webserver
+      file:
+        src: "{{ nginx.config_dir }}/sites-available/webserver.{{ tld }}.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/webserver.{{ tld }}.conf"
+        state: link
+      notify:
+        - reload nginx
+
+    - name: Set up non-ssl virtual host config for experiment site
+      template:
+        src: "nginx-conf/nginx_site_nonssl.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}_nonssl.conf"
+      notify:
+        - reload nginx
+
+    - name: Set up non-ssl symlink for experiment site
+      file:
+        src: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}_nonssl.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/experiment.{{ tld }}_nonssl.conf"
+        state: link
+      notify:
+        - reload nginx
+
+    - name: Reload nginx anyway
+      service:
+        name: nginx
+        state: reloaded
+
+    - name: Set up ssl virtual host for experiment site
+      template:
+        src: "nginx-conf/nginx_site.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}.conf"
+      notify:
+        - reload nginx
+        
+    - name: Set the sites-enabled symlink for experiment site
+      file:
+        src: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/experiment.{{ tld }}.conf"
+        state: link
       notify:
         - reload nginx
 
@@ -21,24 +64,6 @@
         owner: no
       tags:
         - copy-html
-
-    - name: Set up virtual host for experiment
-      template:
-        src: "nginx-conf/nginx_site.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/experiment.{{ tld }}.conf"
-      notify:
-        - reload nginx
-        
-    - name: Set the sites-enabled symlinks
-      file:
-        src: "{{ nginx.config_dir }}/sites-available/{{ item }}"
-        dest: "{{ nginx.config_dir }}/sites-enabled/{{ item }}"
-        state: link
-      with_items:
-        - default
-        - "experiment.{{ tld }}.conf"
-      notify:
-        - reload nginx
 
     - name: Generate the certificates if required
       script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/experiment.{{ tld }}/fullchain.pem"

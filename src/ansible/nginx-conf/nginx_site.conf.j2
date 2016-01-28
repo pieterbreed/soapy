@@ -1,10 +1,4 @@
 server {
-  listen {{ nginx.ip }}:80;
-  server_name experiment.{{ tld }};
-  return 301 https://experiment.{{ tld }}$request_uri;
-}
-
-server {
   listen {{ nginx.ip }}:443 ssl;
   server_name experiment.{{ tld }};
 
