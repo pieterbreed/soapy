@@ -19,3 +19,4 @@ BRANCH_NAME=`git status -bs --porcelain | head -n 1 | cut -d' ' -f2`
 logger "BRANCH_NAME=$BRANCH_NAME"
 (export BRANCH=$BRANCH_NAME; find . -type f -print0 | xargs -0 perl -i.bak -pe 's/soapshop/$BRANCH/g')
 popd
+ 
