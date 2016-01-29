@@ -5,7 +5,7 @@
       <div class="container">
         <h1>{{ .Site.Title }}
           {{ if eq "1" (getenv "IS_EXP") }} EXPERIMENT!
-          <a tabindex="0" class="btn btn-lg btn-info" role="button" data-placement="bottom" data-toggle="popover" data-trigger="focus" title="What do I mean with EXPERIMENTS?" data-content="If you are using the experimental version of the site I might ask you survey questions from time to time. (So I can improve your experience while you're getting some of this delicious soapy goodness!) &#x1F60A">What does this mean?</a>
+          <a class="btn btn-info" role="button" data-placement="bottom" data-toggle="popover" title="What do I mean with EXPERIMENTS?" data-content="If you are using the experimental version of the site I might ask you survey questions from time to time. (So I can improve your experience while you're getting some of this delicious soapy goodness!) &#x1F60A;">What does this mean? &#x2B0E;</a>
           {{else}}&#x1F60A;{{end}}
           </h1>
         <p>Or more accurately: My mother makes soap and I am going to try and sell some of it for her, using this website.</p>
@@ -22,22 +22,40 @@
         <h2>I have stock of these batches at the moment</h2>
         <strong>Extra notes:</strong> The soap is made with pure oils chosen for their skin loving properties. Fragrancing is done with Essential Oils only and no artificial fragrances are used. Fragrancing is always very subtle in order to prevent the possibility of allergic reactions on sensitive skin. All the soaps are made using the Cold Process method. All recipes are calculated in order that the final soap will not only clean your skin, but it will feed it as well so that in the end you will have a softer, healthier skin.</div>
 
-      
-      <!-- Table -->
-      <table class="table table-hover">
+        <div id="small-device-batch-container" class="row visible-xs">
+        <div class="col-sm-6 col-md-4">
+          {{ range .Data.Pages }}
+          {{ if eq "batches" .Type }}
+          <div class="thumbnail">
+            <div class="caption">
+              <p><a class="btn btn-info btn-large" href="{{ .Permalink }}" role="button">View {{ .Title }} &raquo;</a></p>
+              <p>Batch date: <strong>{{ .Date | dateFormat "02 January 2006" }}</strong></p>
+              <p>Stock level: <strong>{{ .Params.batch.stock }}</strong></p>
+
+            </div>
+          </div>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+      <table class="table table-hover hidden-xs" >
         <tr>
           <th>Name</th>
           <th>Date</th>
+          <th>Stock</th>
         </tr>
         {{ range .Data.Pages }}
         {{ if eq "batches" .Type }}
         <tr>
-          <td><a class="btn btn-info" href="{{ .Permalink }}" role="button">View {{ .Title }} &raquo;</a></td>
+          <td><a class="btn btn-info" href="{{ .Permalink }}" role="button">View <strong>{{ .Title }}</strong> &raquo;</a></td>
           <td>{{ .Date | dateFormat "02 January 2006" }}</td>
+          <td>{{ .Params.batch.stock }}</td>
         </tr>
         {{ end }}
         {{ end }}        
       </table>
+
     </div>
     
     {{ if eq "1" (getenv "IS_EXP") }}
