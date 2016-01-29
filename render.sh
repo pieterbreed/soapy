@@ -13,10 +13,10 @@ then
 fi
 logger "Found TOP: $TOP"
 
-BASEURL="https://$WEBSERVER_PUBLIC_DNSNAME:$WEBSERVER_PUBLIC_PORT"
-if [ "$BASEURL" = "https://:" ];
+BASEURL="$WEBSERVER_PUBLIC_SCHEME://$WEBSERVER_PUBLIC_DNSNAME:$WEBSERVER_PUBLIC_PORT"
+if [ "$BASEURL" = "://:" ];
 then
-    echo "Set variables: https://\$WEBSERVER_PUBLIC_DNSNAME:\$WEBSERVER_PUBLIC_PORT"
+    echo "Set variables: \$WEBSERVER_PUBLIC_SCHEME://\$WEBSERVER_PUBLIC_DNSNAME:\$WEBSERVER_PUBLIC_PORT"
     exit 1
 fi
 
@@ -32,7 +32,7 @@ hugo --destination="../../output/hugo" --baseURL="$BASEURL" --verbose --buildDra
 popd
 
 find "$TOP/output" -type f | xargs ls -l
-echo "Rendered to $PROPERTY.$TLD"
+echo "Rendered to $PROPERTY$TLD"
 
 
 
