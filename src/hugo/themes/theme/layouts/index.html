@@ -5,9 +5,9 @@
       <div class="container">
         <h1>{{ .Site.Title }}
           {{ if eq "1" (getenv "IS_EXP") }} EXPERIMENT!
-          <a tabindex="0" class="btn btn-lg btn-info" role="button" data-placement="bottom" data-toggle="popover" data-trigger="focus" title="What do I mean with experiments?" data-content="If you are using the experimental version of the site I might ask you survey questions from time to time">What does this mean?</a>
-          {{end}}
-          &#x1F60A;</h1>
+          <a tabindex="0" class="btn btn-lg btn-info" role="button" data-placement="bottom" data-toggle="popover" data-trigger="focus" title="What do I mean with EXPERIMENTS?" data-content="If you are using the experimental version of the site I might ask you survey questions from time to time. (So I can improve your experience while you're getting some of this delicious soapy goodness!) &#x1F60A">What does this mean?</a>
+          {{else}}&#x1F60A;{{end}}
+          </h1>
         <p>Or more accurately: My mother makes soap and I am going to try and sell some of it for her, using this website.</p>
         <p><small>If you are seeing this, then you are one of my very best friends, or you are becoming one of my very best friends.</small></p>
         <p><small>Thank you for being here &#x1F64F;</small></p>
@@ -28,14 +28,12 @@
         <tr>
           <th>Name</th>
           <th>Date</th>
-          <th>Availability</th>
         </tr>
         {{ range .Data.Pages }}
         {{ if eq "batches" .Type }}
         <tr>
           <td><a class="btn btn-info" href="{{ .Permalink }}" role="button">View {{ .Title }} &raquo;</a></td>
           <td>{{ .Date | dateFormat "02 January 2006" }}</td>
-          <td>{{ .Date }}</td>
         </tr>
         {{ end }}
         {{ end }}        
@@ -55,8 +53,8 @@
     
     <hr>
     <div class="alert alert-info" role="alert">
-      <p><strong>Help me take part in experiments! :)</strong></p>
-      <p><a class="btn btn-info" href="https://experiment.pb.co.za">Find out more &raquo;</a></p>
+      <p><strong>Please help me by taking part in experiments! &#x1F913;</strong></p>
+      <p><a class="btn btn-success" href="https://experiment.pb.co.za">Woohoo! Yeah! &raquo;</a></p>
     </div>
     {{ end }}
 
