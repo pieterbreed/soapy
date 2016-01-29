@@ -1,17 +1,19 @@
-    <div class="container">
-      <hr>
-    </div>
+<hr>
 
-    <div class="container">
-      <footer>
-        {{ partial "copyright.html" . }}
-      </footer>
-    </div>
+<footer>
+  {{ partial "copyright.html" . }}
+</footer>
+
 
     <script src="https:///ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="/js/vendor/bootstrap.min.js"></script>
         <script src="/js/main.js"></script>
+
+        <script>
+          $(function () { $('[data-toggle="tooltip"]').tooltip() })
+          $(function () { $('[data-toggle="popover"]').popover() })
+        </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -24,16 +26,16 @@
         </script>
 
         <!-- Hotjar Tracking Code for https://experiment.pb.co.za -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:{{ getenv "HJID" }},hjsv:{{ getenv "HJSV" }}};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
+        <script>
+          (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:{{ getenv "HJID" }},hjsv:{{ getenv "HJSV" }}};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+          })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
 
     </body>
 </html>
