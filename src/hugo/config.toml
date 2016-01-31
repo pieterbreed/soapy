@@ -1,7 +1,7 @@
-baseurl = "http://replace-this-with-your-hugo-site.com/"
+# baseurl = "http://replace-this-with-your-hugo-site.com/"
 languageCode = "en-us"
-title = "Strata"
-theme = "hugo-strata-theme"
+title = "The Amazing Soap Shop"
+theme = "strata"
 
 [params]
 	# To provide some metadata for search engines feel free to add a few
