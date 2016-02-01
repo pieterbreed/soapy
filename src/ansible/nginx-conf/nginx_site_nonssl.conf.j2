@@ -1,13 +1,13 @@
 server {
   listen {{ nginx.ip }}:80;
-  server_name {{ property }}.{{ tld }};
+  server_name {{ property }};
 
   location ^~ /.well-known/acme-challenge/ {
     root /usr/share/nginx/{{ property }};
   }
 
   location / {
-    return 301 https://{{ property }}.{{ tld }}$request_uri;
+    return 301 https://{{ property }}$request_uri;
   }
 
 }

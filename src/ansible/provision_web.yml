@@ -10,33 +10,10 @@
       shell: "nginx -t"
       changed_when: false
 
-    - name: Set the nginx site config file for webserver
-      template:
-        src: "nginx-conf/nginx_webserver.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/webserver{{ tld }}.conf"
-      notify:
-        - reload nginx
-
-    - name: Set the sites-enabled symlink for webserver
-      file:
-        src: "{{ nginx.config_dir }}/sites-available/webserver{{ tld }}.conf"
-        dest: "{{ nginx.config_dir }}/sites-enabled/webserver{{ tld }}.conf"
-        state: link
-      notify:
-        - reload nginx
-
     - name: Set up non-ssl virtual host config for {{ property }} site
       template:
         src: "nginx-conf/nginx_site_nonssl.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/{{ property }}{{ tld }}_nonssl.conf"
-      notify:
-        - reload nginx
-
-    - name: Set up non-ssl symlink for {{ property }} site
-      file:
-        src: "{{ nginx.config_dir }}/sites-available/{{ property }}{{ tld }}_nonssl.conf"
-        dest: "{{ nginx.config_dir }}/sites-enabled/{{ property }}{{ tld }}_nonssl.conf"
-        state: link
+        dest: "{{ nginx.config_dir }}/sites-enabled/{{ property }}_nonssl.conf"
       notify:
         - reload nginx
 
@@ -48,18 +25,10 @@
     - name: Set up ssl virtual host for {{ property }} site
       template:
         src: "nginx-conf/nginx_site.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/{{ property }}{{ tld }}.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/{{ property }}.conf"
       notify:
         - reload nginx
         
-    - name: Set the sites-enabled symlink for {{ property }} site
-      file:
-        src: "{{ nginx.config_dir }}/sites-available/{{ property }}{{ tld }}.conf"
-        dest: "{{ nginx.config_dir }}/sites-enabled/{{ property }}{{ tld }}.conf"
-        state: link
-      notify:
-        - reload nginx
-
     - name: Deploy the generated hugo output files to {{ property }}
       synchronize:
         src: "../../output/hugo"
@@ -69,9 +38,6 @@
       tags:
         - copy-html
 
-    - name: Generate the certificates if required
-      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/{{ property }}{{ tld }}/fullchain.pem"
-        
     - name: "Make sure nginx is at least running"
       service:
         name: nginx
@@ -80,7 +46,7 @@
 
     - name: Deployed to debug
       debug:
-        msg: "Deployed to {{ property }}{{ tld }}"
+        msg: "Deployed to {{ property }}"
       tags:
         - copy-html
         
