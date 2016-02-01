@@ -1,0 +1,18 @@
+{{ "<!-- portfolio -->" | safeHTML }}
+<section id="two">
+  
+    <h2>Current Batches</h2>
+    <div class="row">
+      {{ range .Data.Pages }}
+      {{ if eq "batches" .Type }}
+      <article class="6u 12u$(xsmall) work-item">
+        <h4>{{ .Title }}</h4>
+        <p><!-- <a class="btn btn-info btn-large" href="{{ .Permalink }}" role="button"> --><img src="{{ .Site.BaseURL }}images/small/{{ .Params.batch.image }}" /><!-- </a> --></p>
+        <p>Batch date: <strong>{{ .Date | dateFormat "02 January 2006" }}</strong></p>
+        <p>Stock level: <strong>{{ .Params.batch.stock }}</strong></p>
+      </article>
+      {{ end }}
+      {{ end }}
+    </div>
+
+</section>
