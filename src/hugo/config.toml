@@ -34,22 +34,11 @@ theme = "strata"
 		content = "You can use this form to send me an email."
 
 		address = [
-			"#8 Ocean View Building",
-                        "17 Chepstow Road",
-                        "Greenpoint", "Cape Town",
-                        "8051",
+                        "Greenpoint",
+                        "Cape Town",
                         "South Africa"
 		]
 		phone = "+28 82 567 6207"
-
-	    #
-	    # What you need to do for the setup?
-	    #
-	    # - set your email address under 'email' below
-	    # - upload the generated site to your server
-	    # - send a dummy email yourself to confirm your account
-	    # - click the confirm link in the email from www.formspree.io
-	    # - you're done. Happy mailing!
 		email = "pieter@theamazingsoapshop.co.za"
 
 		[params.contact.form]

@@ -20,6 +20,31 @@
         - reload nginx
       tags:
         - nginx-config
+
+    - name: Catch the naked domain
+      template:
+        src: "nginx-conf/nginx_naked_domain.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/nginx_naked_domain.conf"
+
+    - name: "restart nginx anyway"
+      service:
+        name: nginx
+        state: restarted
+
+    - name: Create the location where the SSL challenge files will be stored
+      file:
+        path: "/usr/share/nginx/theamazingsoapshop.co.za"
+        state: directory
+
+    - name: Generate the SSL certificates if required
+      environment:
+        PROPERTY: "theamazingsoapshop.co.za"
+      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/theamazingsoapshop.co.za/fullchain.pem"
+
+    - name: Catch the naked domain (SSL)
+      template:
+        src: "nginx-conf/nginx_naked_domain_ssl.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/nginx_naked_domain_conf_ssl.conf"
         
     - name: "Make sure nginx is at least running"
       service:
