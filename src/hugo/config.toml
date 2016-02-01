@@ -11,11 +11,8 @@ theme = "strata"
         googleAnalytics = "UA-73172604-1"
 
 	[params.sidebar]
-		# Replace the avatar with a picture of your own under static/images
 		avatar = "avatar.jpg"
-		# Use Markdown to format the string. This works nearly all over the theme
 		bio = "I'm **Pieter**, why don't you **buy some soap from me**? &#x1f60c;"
-		# The icons will be shown if you enter your username
 		twitter = "amazingsoapshop"
 		github = "pieterbreed"
 		instagram = "theamazingsoapshop"
@@ -28,8 +25,8 @@ theme = "strata"
 
 
 	[params.about]
-		title = "Ipsum lorem dolor aliquam ante commodo magna sed accumsan arcu neque."
-		content = "Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis tortor primis integer massa adipiscing id nisi accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque cubilia."
+		title = "I'm busy migrating my old soapshop.pb.co.za content over"
+		content = "I'll have batch-infos and pics back up soon. In the meantime the [old site](https://soapshop.pb.co.za) is still serving all the content."
 
 
 	[params.portfolio]
