@@ -15,17 +15,7 @@
     - name: Set the nginx site config file for webserver
       template:
         src: "nginx-conf/nginx_webserver.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-available/webserver.conf"
-      notify:
-        - reload nginx
-      tags:
-        - nginx-config
-        
-    - name: Set the sites-enabled symlink for webserver
-      file:
-        src: "{{ nginx.config_dir }}/sites-available/webserver.conf"
-        dest: "{{ nginx.config_dir }}/sites-enabled/webserver.conf"
-        state: link
+        dest: "{{ nginx.config_dir }}/sites-enabled/{{ backing_property }}.conf"
       notify:
         - reload nginx
       tags:

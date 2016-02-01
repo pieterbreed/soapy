@@ -21,10 +21,15 @@
         name: nginx
         state: reloaded
 
+    - name: Generate the certificates if required
+      environment:
+        PROPERTY: "{{ property }}"
+      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/{{ property }}/fullchain.pem"
+
     - name: Set up ssl virtual host for property site
       template:
         src: "nginx-conf/nginx_site.conf.j2"
-        dest: "{{ nginx.config_dir }}/sites-enables/{{ property }}.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/{{ property }}.conf"
       notify:
         - reload nginx
       tags:
@@ -39,15 +44,13 @@
       tags:
         - copy-html
 
-    - name: Generate the certificates if required
-      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/{{ property }}/fullchain.pem"
-
     - name: Deployed to debug
       debug:
         msg: "Deployed to {{ property }}"
       tags:
-        - copy-html        - nginx-config
-        
+        - copy-html
+        - nginx-config
+
   handlers:
     - name: reload nginx
       service:

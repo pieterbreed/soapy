@@ -1,7 +1,7 @@
 server {
   listen {{ nginx.ip }}:80 default_server;
   server_name {{ backing_property }};
-  return 301 https://{{ backing_property }}request_uri;
+  return 301 https://{{ backing_property }}$request_uri;
 }
 
 server {
