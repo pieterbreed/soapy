@@ -22,9 +22,8 @@ theme = "strata"
 		facebook = ""
 
 		copyright = [
-			"&copy; John Doe",
-			"Design: [HTML5 UP](//html5up.net)",
-			"Demo Images: [Unsplash](//unsplash.com/)"
+			"&copy; Pieter Breed",
+			"[![CC-BY-SA](/images/cc-by-sa.png)](//creativecommons.org/licenses/by-sa/4.0/)"
 		]
 
 
