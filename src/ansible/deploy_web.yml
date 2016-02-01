@@ -1,0 +1,55 @@
+---
+- hosts: webserver
+  tasks:
+    - name: Test current nginx config
+      shell: "nginx -t"
+      changed_when: false
+      tags:
+        - nginx-config
+
+    - name: Set up non-ssl virtual host config for property site
+      template:
+        src: "nginx-conf/nginx_site_nonssl.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-enabled/{{ property }}_nonssl.conf"
+      notify:
+        - reload nginx
+      tags:
+        - nginx-config
+
+    - name: Reload nginx anyway
+      service:
+        name: nginx
+        state: reloaded
+
+    - name: Set up ssl virtual host for property site
+      template:
+        src: "nginx-conf/nginx_site.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-enables/{{ property }}.conf"
+      notify:
+        - reload nginx
+      tags:
+        - nginx-config
+
+    - name: Deploy the generated hugo output files to {{ property }}
+      synchronize:
+        src: "../../output/hugo"
+        dest: "/usr/share/nginx/{{ property }}"
+        group: no
+        owner: no
+      tags:
+        - copy-html
+
+    - name: Generate the certificates if required
+      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/{{ property }}/fullchain.pem"
+
+    - name: Deployed to debug
+      debug:
+        msg: "Deployed to {{ property }}"
+      tags:
+        - copy-html        - nginx-config
+        
+  handlers:
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded

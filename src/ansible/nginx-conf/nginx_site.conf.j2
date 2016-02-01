@@ -1,13 +1,13 @@
 server {
   listen {{ nginx.ip }}:443 ssl;
-  server_name {{ property }}{{ tld }};
+  server_name {{ property }};
 
   # add Strict-Transport-Security to prevent man in the middle attacks
   add_header Strict-Transport-Security "max-age=31536000";         
 
   ssl on;
-  ssl_certificate {{ letsencrypt_live_path }}/{{ property }}{{ tld }}/fullchain.pem;
-  ssl_certificate_key {{ letsencrypt_live_path }}/{{ property }}{{ tld }}/privkey.pem;
+  ssl_certificate {{ letsencrypt_live_path }}/{{ property }}/fullchain.pem;
+  ssl_certificate_key {{ letsencrypt_live_path }}/{{ property }}/privkey.pem;
 
   location / {
     root   /usr/share/nginx/{{ property }}/hugo;
