@@ -21,7 +21,7 @@
         name: nginx
         state: reloaded
 
-    - name: Generate the certificates if required
+    - name: Generate the SSL certificates if required
       environment:
         PROPERTY: "{{ property }}"
       script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/{{ property }}/fullchain.pem"
