@@ -1,0 +1,18 @@
+{{ "<!-- portfolio -->" | safeHTML }}
+<section id="quotes-section">
+  
+    <h2>Testimonials</h2>
+    <div class="row">
+      {{ range .Site.Data.quotes.initial }}
+      <article class="6u 12u$(xsmall) work-item">
+        <h4>{{ .who }}</h4>
+        <p>
+          {{ range .what }}
+          <blockquote>{{ . | markdownify }}</blockquote>
+          {{ end }}
+        </p>
+      </article>
+      {{ end }}
+    </div>
+
+</section>
