@@ -4,11 +4,16 @@
 
 		{{ "<!-- Main -->" | safeHTML }}
 		<div id="main">
-                        <h3>This is a newsletter -{{ .Title }}-</h3>
-                        {{ .Content }}
-			{{ partial "contact" . }}
-		</div>
+                  <div id="newsletter-single-content">
+                    <h2>{{ .Title }}</h2>
+                    <p><strong>{{ .Date | dateFormat "02 January 2006" }}</strong>&nbsp;<small>{{ .Date | dateFormat "15:04" }}</small></p>
+                    <hr/>
+                    {{ .Content }}
+                  </div>
 
+                  {{ partial "contact" . }}
+		</div>
+                
 		{{ partial "footer" . }}
 	</body>
 </html>
