@@ -1,7 +1,7 @@
 <!-- Three -->
 <section id="three">
-	{{ with .Site.Params.contact.title }}<h2>{{ . }}</h2>{{ end }}
-	{{ with .Site.Params.contact.content }}<p>{{ . }}</p>{{ end }}
+	{{ with .Site.Params.contact.title }}<h2>{{ . | markdownify }}</h2>{{ end }}
+	{{ with .Site.Params.contact.content }}<p>{{ . | markdownify }}</p>{{ end }}
 	<div class="row" id="contact-form">
 		<div class="8u 12u$(small)">
 			<form action="//formspree.io/{{ .Site.Params.contact.email }}"
