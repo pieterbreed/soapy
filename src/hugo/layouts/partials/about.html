@@ -1,0 +1,12 @@
+<section id="one">
+	<header class="major">
+		{{ with .Site.Params.about.title }}<h2>{{ . | markdownify }}</h2>{{ end }}
+	</header>
+	{{ with .Site.Params.about.content }}<p>{{ . | markdownify }}</p>{{ end }}
+        <div id="nav">
+          <ul>
+            <li>{{ .Site.Params.sidebar.content | markdownify }}</li>
+          </ul>
+        </div>
+
+</section>

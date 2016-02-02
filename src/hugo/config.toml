@@ -18,6 +18,8 @@ theme = "strata"
 		instagram = "theamazingsoapshop"
 		facebook = ""
 
+                content = "[most recent newsletter](/newsletter/welcome)"
+
 		copyright = [
 			"&copy; Pieter Breed",
 			"[![CC-BY-SA](/images/cc-by-sa.png)](//creativecommons.org/licenses/by-sa/4.0/)"
