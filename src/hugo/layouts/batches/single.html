@@ -1,0 +1,18 @@
+{{ partial "head" . }}
+	<body id="top">
+		{{ partial "header" . }}
+
+		{{ "<!-- Main -->" | safeHTML }}
+		<div id="main">
+                  <div id="batches-single-content">
+                    <h2>{{ .Title }}</h2>
+                    <p>Became available: <strong>{{ .Date | dateFormat "2 January 2006"  }}</strong><br/>
+                    Stock: <strong>{{ .Params.batch.stock }}</strong></p>
+                    {{ .Content }}
+                  </div>
+		  {{ partial "contact" . }}
+		</div>
+
+		{{ partial "footer" . }}
+	</body>
+</html>

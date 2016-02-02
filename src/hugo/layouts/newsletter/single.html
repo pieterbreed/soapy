@@ -1,0 +1,14 @@
+{{ partial "head" . }}
+	<body id="top">
+		{{ partial "header" . }}
+
+		{{ "<!-- Main -->" | safeHTML }}
+		<div id="main">
+                        <h3>This is a newsletter -{{ .Title }}-</h3>
+                        {{ .Content }}
+			{{ partial "contact" . }}
+		</div>
+
+		{{ partial "footer" . }}
+	</body>
+</html>
