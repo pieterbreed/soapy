@@ -5,7 +5,9 @@
 	{{ with .Site.Params.about.content }}<p>{{ . | markdownify }}</p>{{ end }}
         <div id="nav">
           <ul>
-            <li>{{ .Site.Params.sidebar.content | markdownify }}</li>
+            {{ range .Site.Data.nav.landing }}
+            <li><a href="{{ .link }}">{{ .text }}</a></li>
+            {{ end }}
           </ul>
         </div>
 
