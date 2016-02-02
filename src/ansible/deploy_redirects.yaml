@@ -1,0 +1,49 @@
+---
+- hosts: webserver
+  name: "Setup 301 redirects"
+  vars:
+      
+  tasks:
+    - name: Test current nginx config
+      shell: "nginx -t"
+      changed_when: false
+      tags:
+        - nginx-config
+
+    - name: Set up non-ssl virtual host config for forwarded site (SSL challenges)
+      template:
+        src: "nginx-conf/http_forward.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-enabled/forward_{{ item.from }}_to_{{ item.to}}_nonssl.conf"
+      with_items: http_forwards
+      notify:
+        - reload nginx
+      tags:
+        - nginx-config
+
+    - name: Reload nginx anyway
+      service:
+        name: nginx
+        state: reloaded
+
+    - name: Generate the SSL certificates if required
+      environment:
+        PROPERTY: "{{ item.from }}"
+      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/{{ item.from }}/fullchain.pem"
+      with_items: http_forwards
+
+    - name: Set up SSL virtual host config for forwarded site (SSL challenges)
+      template:
+        src: "nginx-conf/https_forward.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-enabled/forward_{{ item.from }}_to_{{ item.to}}_ssl.conf"
+      with_items: http_forwards
+      notify:
+        - reload nginx
+      tags:
+        - nginx-config
+        
+  handlers:
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded
+
