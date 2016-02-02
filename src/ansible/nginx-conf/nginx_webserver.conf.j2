@@ -1,19 +1,19 @@
 server {
   listen {{ nginx.ip }}:80 default_server;
-  server_name webserver{{ tld }};
-  return 301 https://webserver{{ tld }}$request_uri;
+  server_name {{ backing_property }};
+  return 301 https://{{ backing_property }}$request_uri;
 }
 
 server {
   listen {{ nginx.ip }}:443 ssl default_server;
-  server_name webserver{{ tld }};
+  server_name {{ backing_property }};
 
   # add Strict-Transport-Security to prevent man in the middle attacks
   add_header Strict-Transport-Security "max-age=31536000";         
 
   ssl on;
-  ssl_certificate {{ letsencrypt_live_path }}/webserver{{ tld }}/fullchain.pem;
-  ssl_certificate_key {{ letsencrypt_live_path }}/webserver{{ tld }}/privkey.pem;
+  ssl_certificate {{ letsencrypt_live_path }}/{{ backing_property }}/fullchain.pem;
+  ssl_certificate_key {{ letsencrypt_live_path }}/{{ backing_property }}/privkey.pem;
 
   location / {
     root   /usr/share/nginx/html;

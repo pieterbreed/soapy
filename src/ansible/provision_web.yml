@@ -9,19 +9,38 @@
     - name: Test current nginx config
       shell: "nginx -t"
       changed_when: false
+      tags:
+        - nginx-config
 
+<<<<<<< HEAD
     - name: Set up non-ssl virtual host config for {{ property }} site
       template:
         src: "nginx-conf/nginx_site_nonssl.conf.j2"
         dest: "{{ nginx.config_dir }}/sites-enabled/{{ property }}_nonssl.conf"
       notify:
         - reload nginx
+=======
+    - name: Set the nginx site config file for webserver
+      template:
+        src: "nginx-conf/nginx_webserver.conf.j2"
+        dest: "{{ nginx.config_dir }}/sites-enabled/{{ backing_property }}.conf"
+      notify:
+        - reload nginx
+      tags:
+        - nginx-config
 
-    - name: Reload nginx anyway
+    - name: Catch the naked domain
+      template:
+        src: "nginx-conf/nginx_naked_domain.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/nginx_naked_domain.conf"
+>>>>>>> rebrand
+
+    - name: "restart nginx anyway"
       service:
         name: nginx
-        state: reloaded
+        state: restarted
 
+<<<<<<< HEAD
     - name: Set up ssl virtual host for {{ property }} site
       template:
         src: "nginx-conf/nginx_site.conf.j2"
@@ -38,6 +57,22 @@
       tags:
         - copy-html
 
+=======
+    - name: Create the location where the SSL challenge files will be stored
+      file:
+        path: "/usr/share/nginx/theamazingsoapshop.co.za"
+        state: directory
+
+    - name: Generate the SSL certificates if required
+      environment:
+        PROPERTY: "theamazingsoapshop.co.za"
+      script: scripts/create_cert.sh creates="{{ letsencrypt_live_path }}/theamazingsoapshop.co.za/fullchain.pem"
+
+    - name: Catch the naked domain (SSL)
+      template:
+        src: "nginx-conf/nginx_naked_domain_ssl.conf"
+        dest: "{{ nginx.config_dir }}/sites-enabled/nginx_naked_domain_conf_ssl.conf"
+        
     - name: "Make sure nginx is at least running"
       service:
         name: nginx

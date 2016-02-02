@@ -23,7 +23,7 @@ pushd ../..
 ./render.sh
 popd
 
-ansible-playbook provision_web.yml $COPY 
+ansible-playbook deploy_web.yml $COPY 
 
 terminal-notifier -title "Done" \
                   -message "deploy finished $PROPERTY$TLD" \

@@ -1,0 +1,50 @@
+# baseurl = "http://replace-this-with-your-hugo-site.com/"
+languageCode = "en-us"
+title = "The Amazing Soap Shop"
+theme = "strata"
+
+[params]
+	# To provide some metadata for search engines feel free to add a few
+    # information about you and your website.
+	name = "Pieter Breed"
+	description = "Boutique Soap eCommerce"
+        googleAnalytics = "UA-73172604-1"
+
+	[params.sidebar]
+		avatar = "avatar.jpg"
+		bio = "I'm **Pieter**, why don't you **buy some soap from me**? &#x1f60c;"
+		twitter = "amazingsoapshop"
+		github = "pieterbreed"
+		instagram = "theamazingsoapshop"
+		facebook = ""
+
+		copyright = [
+			"&copy; Pieter Breed",
+			"[![CC-BY-SA](/images/cc-by-sa.png)](//creativecommons.org/licenses/by-sa/4.0/)"
+		]
+
+
+	[params.about]
+		title = "I'm busy migrating my old soapshop.pb.co.za content over"
+		content = "I'll have batch-infos and pics back up soon. In the meantime the [old site](https://soapshop.pb.co.za) is still serving all the content."
+
+
+	[params.contact]
+		title = "Get In Touch"
+		content = "You can use this form to send me an email."
+
+		address = [
+                        "Greenpoint",
+                        "Cape Town",
+                        "South Africa"
+		]
+		phone = "+28 82 567 6207"
+		email = "pieter@theamazingsoapshop.co.za"
+
+		[params.contact.form]
+			# Set custom strings for the form if your native
+			# language isn't English
+			name = "eg. Pieter Breed"
+			email = "eg. pieter@theamazingsoapshop.co.za"
+			message = "Message"
+			submit = "Send message"
