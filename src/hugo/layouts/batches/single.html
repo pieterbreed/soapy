@@ -9,6 +9,10 @@
                     <p>Became available: <strong>{{ .Date | dateFormat "2 January 2006"  }}</strong><br/>
                       Stock: <strong>{{ .Params.batch.stock }}</strong></p>
                     <hr/>
+                    <img id="batch-sample-image" src="{{ .Site.BaseURL }}images/small/{{ .Params.batch.image }}" />
+                    <br/>
+                    {{ with .Params.batch.vegan }}{{ partial "vegan" . }}{{ end }}
+                    <hr/>
                     {{ .Content }}
                   </div>
 		  {{ partial "contact" . }}
