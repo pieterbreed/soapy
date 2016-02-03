@@ -28,8 +28,8 @@ theme = "strata"
 
 	[params.about]
 		title = "The Amazing Soap Shop"
-		content = "Because why have _a_ soap shop if you can have an _amazing_ soap shop?"
-
+		content = "Because **Gifting** good soap to someone is an act of **Kindness**."
+                product_brand_copy = "Our soap is made with pure oils chosen for their skin loving properties. Fragrancing is done with Essential Oils only and no artificial fragrances are used. Fragrancing is always very subtle in order to prevent the possibility of allergic reactions on sensitive skin. All the soaps are made using the Cold Process method. All recipes are calculated in order that the final soap will not only clean your skin, but it will feed it as well so that in the end you will have a softer, healthier skin."
 
 	[params.contact]
 		title = "Get In Touch"

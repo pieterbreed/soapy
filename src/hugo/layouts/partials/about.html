@@ -3,10 +3,12 @@
 		{{ with .Site.Params.about.title }}<h2>{{ . | markdownify }}</h2>{{ end }}
 	</header>
 	{{ with .Site.Params.about.content }}<p>{{ . | markdownify }}</p>{{ end }}
+	{{ with .Site.Params.about.product_brand_copy }}<h3>Product</h3><p><blockquote>{{ . | markdownify }}</blockquote></p>{{ end }}
         <div id="nav">
+          <h3>Quick Navigation</h3>
           <ul>
             {{ range .Site.Data.nav.landing }}
-            <li><a href="{{ .link }}">{{ .text }}</a></li>
+            <li><a href="{{ .link }}">{{ .text | markdownify }}</a></li>
             {{ end }}
           </ul>
         </div>
