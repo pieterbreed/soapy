@@ -7,7 +7,9 @@
                   <div id="batches-single-content">
                     <h2>{{ .Title }}</h2>
                     <p>Became available: <strong>{{ .Date | dateFormat "2 January 2006"  }}</strong><br/>
-                      Stock: <strong>{{ .Params.batch.stock }}</strong></p>
+                      Stock: <strong>{{ .Params.batch.stock }}</strong>
+                    </p>
+
                     <hr/>
                     <img id="batch-sample-image" src="{{ .Site.BaseURL }}images/small/{{ .Params.batch.image }}" />
                     <br/>

@@ -12,7 +12,7 @@ theme = "strata"
 
 	[params.sidebar]
 		avatar = "avatar.jpg"
-		bio = "I'm **Pieter**, why don't you **buy some soap from me**? &#x1f60c;"
+		bio = "Hi! I'm **Pieter**. It feels *Good* to be *Kind* to others. &#x1f60c;"
 		twitter = "amazingsoapshop"
 		github = "pieterbreed"
 		instagram = "theamazingsoapshop"
